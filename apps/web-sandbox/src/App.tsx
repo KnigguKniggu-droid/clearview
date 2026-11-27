@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ShieldCheck, RotateCcw, HeartPulse, Wifi, Zap, ArrowUpRight } from 'lucide-react';
+import { LockKeyhole, RotateCcw } from 'lucide-react';
 import { applySafeMode, highlightElement, revertSafeMode, scanDocument } from '@clearview/analyzer';
 import type { AuditReport, RepairSnapshot } from '@clearview/analyzer';
 import { MedicalPortal } from './portals/MedicalPortal';
@@ -7,12 +7,14 @@ import { SubscriptionCheckout } from './portals/SubscriptionCheckout';
 import { UtilityPlanPortal } from './portals/UtilityPlanPortal';
 import { PortalFrame } from './components/PortalFrame';
 import { GuardPanel } from './components/GuardPanel';
+import { useAuditMotion } from './hooks/useAuditMotion';
+import './hooks/auditMotion.css';
 
 type Scenario = 'medical' | 'subscription' | 'utility';
 const scenarios = [
-  { id: 'medical' as const, label: 'Medical Billing', short: 'Medical', icon: HeartPulse, domain: 'patient.stjude-regional.example / intake' },
-  { id: 'subscription' as const, label: 'Telecom & Stream', short: 'Telecom', icon: Wifi, domain: 'checkout.swiftnet.example / your-plan' },
-  { id: 'utility' as const, label: 'LoneStar Utility', short: 'Utility', icon: Zap, domain: 'enroll.lonestar-grid.example / residential' }
+  { id: 'medical' as const, label: 'Medical Billing', domain: 'patient.stjude-regional.example / intake' },
+  { id: 'subscription' as const, label: 'Telecom & Stream', domain: 'checkout.swiftnet.example / your-plan' },
+  { id: 'utility' as const, label: 'LoneStar Utility', domain: 'enroll.lonestar-grid.example / residential' }
 ];
 function Portal({ scenario }: { scenario: Scenario }) { return scenario === 'medical' ? <MedicalPortal /> : scenario === 'subscription' ? <SubscriptionCheckout /> : <UtilityPlanPortal />; }
 
@@ -30,6 +32,7 @@ function Sandbox() {
   const [error, setError] = useState('');
   const root = useRef<HTMLDivElement>(null);
   const snapshot = useRef<RepairSnapshot | null>(null);
+  useAuditMotion(report);
   const scan = useCallback(() => {
     if (!root.current) return;
     try { setReport(scanDocument(root.current)); setError(''); } catch (cause) { setError(cause instanceof Error ? cause.message : 'The scan failed. Reset the portal and try again.'); }
@@ -63,11 +66,11 @@ function Sandbox() {
   const selected = scenarios.find(item => item.id === scenario)!;
   return <>
     <a className="skip-link" href="#workspace">Skip to workspace</a>
-    <header className="topbar"><a className="brand" href="/" aria-label="ClearView home"><span><ShieldCheck size={21} /></span>ClearView<span className="brand-divider" /><small>INTERACTIVE LAB</small></a><div className="topbar-right"><span className="privacy-dot" /> Private by design<span className="version">v1.0</span></div></header>
-    <main id="workspace" className="workspace"><div className="intro-row"><div><div className="eyebrow">A LITTLE CLARITY GOES A LONG WAY</div><h1>See what you’re agreeing to.</h1><p>Find the fine print. Understand the cost. Take back control.</p></div><div className="demo-note"><span>THREE REAL-WORLD SCENARIOS</span><p>Simulated portals. Real, reversible repairs.</p><ArrowUpRight size={20} /></div></div>
-      <nav className="scenario-bar" aria-label="Choose a sample scenario"><div className="scenario-pills">{scenarios.map((item, index) => <button key={item.id} data-testid={`scenario-${item.id}`} className={scenario === item.id ? 'selected' : ''} aria-pressed={scenario === item.id} onClick={() => { if (scenario !== item.id) reset(item.id); }}><item.icon size={16} /><span><span className="scenario-index">0{index + 1}</span> {item.label}</span></button>)}</div><button data-testid="reset-portal" className="reset-button" aria-label="Reset portal state" onClick={() => reset()}><RotateCcw size={14} /><span>Reset portal state</span></button></nav>
+    <header className="topbar"><a className="brand" href="/" aria-label="ClearView home">Clear<span>View</span></a><span className="brand-purpose">A second look, before you agree.</span><div className="topbar-right"><LockKeyhole size={15} /> Runs in your browser</div></header>
+    <main id="workspace" className="workspace"><div className="intro-row"><div><h1>Know the cost. Keep the choice.</h1><p>Read a sample page beside its receipt. Find a concern. Try a reversible repair.</p></div><div className="demo-note"><strong>Try it for yourself</strong><span>Sample data. Nothing to buy.</span></div></div>
+      <nav className="scenario-bar" aria-label="Choose a sample scenario"><div className="scenario-pills">{scenarios.map(item => <button key={item.id} data-testid={`scenario-${item.id}`} className={scenario === item.id ? 'selected' : ''} aria-pressed={scenario === item.id} onClick={() => { if (scenario !== item.id) reset(item.id); }}><span>{item.label}</span></button>)}</div><button data-testid="reset-portal" className="reset-button" aria-label="Reset portal state" onClick={() => reset()}><RotateCcw size={16} /><span>Reset portal state</span></button></nav>
       <div className="split-view"><PortalFrame key={`${scenario}-${generation}`} portalRef={root} domain={selected.domain} scenario={scenario}><Portal scenario={scenario} /></PortalFrame><GuardPanel report={report} baseline={baseline} onToggle={toggle} onLocate={locate} onRescan={scan} error={error} /></div>
-      <footer className="page-footer"><span><ShieldCheck size={14} /> BUILT FOR CLEARER CHOICES</span><p>Deterministic checks. No AI API. No page data sent to a server.</p><span>Code for Change · 2026</span></footer>
+      <footer className="page-footer"><strong>ClearView</strong><p>Checks run locally. No account, remote AI, or uploaded page data.</p><span>Code for Change · 2026</span></footer>
     </main>
   </>;
 }

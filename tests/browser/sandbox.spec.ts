@@ -75,6 +75,19 @@ test('safe mode enables Enter and Space on the sample payment control', async ({
   await expect(page.getByTestId('portal-root').getByRole('status')).toContainText('Demo');
 });
 
+test('reduced motion keeps receipt changes and source links usable', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.reload();
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$29.99');
+  await page.locator('.receipt-lines button').first().click();
+  await page.getByTestId('safe-toggle').click();
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$0.00');
+  await expect(page.getByTestId('receipt-due')).toHaveText('$334.00');
+  await expect.poll(() => page.evaluate(() => document.getAnimations().filter(animation => animation.playState === 'running').length)).toBe(0);
+  await page.getByTestId('safe-toggle').click();
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$29.99');
+});
+
 for (const width of [375, 768, 1440]) {
   test(`layout fits ${width}px and inspector has no automated accessibility violations`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
@@ -88,12 +101,13 @@ for (const width of [375, 768, 1440]) {
 }
 
 test('normal interactions produce no uncaught browser errors', async ({ page }) => {
+  const expectedOrigin = new URL(page.url()).origin;
   const errors: string[] = [];
   const externalRequests: string[] = [];
   const submissions: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('request', request => {
-    if (/^https?:/.test(request.url()) && new URL(request.url()).hostname !== '127.0.0.1') externalRequests.push(request.url());
+    if (/^https?:/.test(request.url()) && new URL(request.url()).origin !== expectedOrigin) externalRequests.push(request.url());
     if (request.method() !== 'GET') submissions.push(`${request.method()} ${request.url()}`);
   });
   await page.reload();

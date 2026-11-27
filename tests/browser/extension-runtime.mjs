@@ -106,6 +106,21 @@ try {
   const localBefore = await panel.evaluate(`({totals:Array.from(document.querySelectorAll('.totals strong')).map(e=>e.textContent), findings:document.querySelector('.count')?.textContent,error:document.querySelector('.error')?.textContent})`);
   receipt.checks.push({ name: 'Local medical report through real sidepanel', ...localBefore });
   if (localBefore.totals.join('|') !== '$334.00|$29.99') throw new Error(`Unexpected local receipt: ${JSON.stringify(localBefore)}`);
+  for (const width of [320, 420]) {
+    await panel.send('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
+    await panel.evaluate('window.scrollTo(0,0)');
+    await panel.screenshot(resolve(evidence, `extension-panel-${width}.png`));
+    const layout = await panel.evaluate('({viewport:innerWidth,content:document.documentElement.scrollWidth})');
+    receipt.checks.push({ name: `Sidepanel ${width}px has no horizontal overflow`, ...layout });
+    if (layout.content > layout.viewport) throw new Error(`Sidepanel overflows at ${width}px.`);
+  }
+  await panel.send('Emulation.setDeviceMetricsOverride', { width: 380, height: 900, deviceScaleFactor: 1, mobile: false });
+  await panel.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+  await panel.screenshot(resolve(evidence, 'extension-panel-reduced-motion.png'));
+  const reduced = await panel.evaluate("({reduced:matchMedia('(prefers-reduced-motion:reduce)').matches,animation:getComputedStyle(document.querySelector('.totals strong')).animationName})");
+  receipt.checks.push({ name: 'Reduced motion disables amount settlement', ...reduced });
+  if (!reduced.reduced || reduced.animation !== 'none') throw new Error('Reduced motion still animates totals.');
+  await panel.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
   await panel.screenshot(resolve(evidence, 'extension-medical-panel-before.png'));
   await page.screenshot({ path: resolve(evidence, 'extension-medical-page-before.png') });
   await click(panel, '.safe-button');
@@ -121,12 +136,12 @@ try {
   if (!await page.locator('input[type=checkbox]').isChecked()) throw new Error('Local revert did not restore checkbox.');
   receipt.checks.push({ name: 'Local revert restores checkbox', passed: true });
 
-  await page.goto('http://127.0.0.1:4173/');
-  await page.locator('[data-testid=portal-root]').waitFor();
-  receipt.medicalFindingEvidence = await page.evaluate(async source => {
-    const analyzer = await import(source);
-    return analyzer.scanDocument(document.querySelector('[data-testid=portal-root]')).findings.map(item => ({ rule: item.ruleId, evidence: item.evidenceText, explanation: item.plainLanguageExplanation }));
-  }, `/@fs/${root.replaceAll('\\', '/')}/packages/analyzer/src/index.ts`);
+  receipt.medicalFindingEvidence = await panel.evaluate(`(async()=>{
+    const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
+    const response=await chrome.tabs.sendMessage(tab.id,{source:'clearview-panel',action:'scan'});
+    if(!response.ok)throw Error(response.error);
+    return response.report.findings.map(item=>({rule:item.ruleId,evidence:item.evidenceText,explanation:item.plainLanguageExplanation}));
+  })()`);
   await writeFile(resolve(evidence, 'medical-finding-evidence.json'), JSON.stringify(receipt.medicalFindingEvidence, null, 2));
   await page.goto('https://www.w3.org/WAI/demos/bad/before/home.html', { waitUntil: 'load' });
   await page.screenshot({ path: resolve(evidence, 'extension-w3c-page-initial.png') });
