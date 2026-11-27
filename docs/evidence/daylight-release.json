@@ -1,0 +1,16 @@
+{
+  "runtimeRevision": "690e28bf19f04c995fa759892de39a18a4be5090",
+  "url": "https://clearview-brown.vercel.app",
+  "deploymentId": "dpl_CGCQzB6KfGcLM6Qv2gSDC1KTLrWK",
+  "unitIntegrationTests": 129,
+  "localBrowserTests": 21,
+  "deployedBrowserTests": 21,
+  "deployedBrowserSeconds": 29.4,
+  "exactDeployedStaticFiles": 29,
+  "webEvidence": "daylight-ui-audit.json",
+  "extensionEvidence": "extension-browser-receipt.json",
+  "ownerChromeMultiSiteTest": "PENDING_MANUAL_EXTENSION_LOAD",
+  "fullWcagConformance": "NOT_ESTABLISHED",
+  "screenReader": "UNKNOWN",
+  "actualBrowserZoom": "UNKNOWN"
+}

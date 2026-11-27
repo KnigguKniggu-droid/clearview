@@ -8,9 +8,9 @@ The main scenario labels are Medical Bill, Internet Checkout, and Senior Tax For
 
 ## Current execution and evidence
 
-The daylight integrated `npm run verify` passed with exit code 0: 129 tests (56 analyzer, 52 reporting, 21 extension), lint, workspace types, and production builds. Subsequent web filter semantics and review-footer fixes passed a fresh web build and all 21 browser tests in 21.1 seconds. The final web assets are index-BArohdx3.js and index-BDzfqFmG.css. Extension assets are index-DwQrynLZ.js and index-BNoosXM1.css; the final unpacked runtime passed. Visible multi-site checks in the owner's installed Chrome, release packaging, and publication remain pending.
+The daylight integrated `npm run verify` passed with exit code 0: 129 tests (56 analyzer, 52 reporting, 21 extension), lint, workspace types, and production builds. Subsequent web filter semantics, review-footer, and import-error fixes passed a fresh web build and all 21 browser tests in 21.1 seconds. The final web assets are index-BArohdx3.js and index-BDzfqFmG.css. Extension assets are index-DwQrynLZ.js and index-BNoosXM1.css; the final unpacked runtime passed. The daylight source is published on GitHub and the live sandbox passes all 21 browser tests. All 29 deployed static files match the verified local build. Visible multi-site checks in the owner's installed Chrome remain pending.
 
-The web evidence at docs/evidence/daylight-ui-audit.json is dated 11/27/2026 18:10:55. Its calibrated 7:1 text check found zero violations and zero incomplete checks across workspace, repair review, saved report, and installation at 375/768/1440 px. Browser checks also verified 16 px body/14 px metadata, 44 px controls/52 px primary actions, 3 px focus, 64 px desktop header, and 55/45 desktop panes. Native Tab checks confirmed that the review footer no longer obscures focused choices at all three widths.
+The web evidence at docs/evidence/daylight-ui-audit.json is dated 2026-11-27T18:10:55.659Z. Its calibrated 7:1 text check found zero violations and zero incomplete checks across workspace, repair review, saved report, and installation at 375/768/1440 px. Browser checks also verified 16 px body/14 px metadata, 44 px controls/52 px primary actions, 3 px focus, 64 px desktop header, and 55/45 desktop panes. Native Tab checks confirmed that the review footer no longer obscures focused choices at all three widths.
 
 The unpacked Chromium extension runtime passed at 2026-11-27T18:07:13.843Z. The evidence is docs/evidence/extension-browser-receipt.json. Checks covered 320/420 px widths, 3 px keyboard focus, preserving selected add-ons by default, verified $29.99 monthly removal when selected, restore, and W3C 47 → 41 → 47 findings with exact rollback. The calibrated 7:1 text check produced zero violations and zero incomplete checks in initial, expanded review, and active states. The compact 14 px repair marker fits the narrow progress row, retains its title, and uses the specified colors. Readability repairs use at least 16 px and preserve larger computed sizes. This is isolated Chromium evidence, not the owner's installed-Chrome test or full AAA conformance.
 
@@ -34,11 +34,11 @@ GOV.UK type-scale and official Apple typography guidance informed the direction.
 
 Publication authorization to KnigguKniggu-droid/clearview and the signed-in Vercel account persists. The GitHub CLI workflow scope was approved. Do not request that authorization again merely because the visual direction changed. Publish only after the concrete current release passes its checks.
 
-The previous published runtime is 86676fa. The 157.3-second film and comparison reel document that historical runtime and do not show Warm Civic Daylight. They do not freeze current development. No video upload or Devpost submission is authorized.
+The current published daylight runtime is `690e28bf19f04c995fa759892de39a18a4be5090`. The earlier published runtime was `86676fa`. The 157.3-second film and comparison reel document that historical runtime and do not show Warm Civic Daylight. They do not freeze current development. No video upload or Devpost submission is authorized.
 
 ## Next verification
 
-Inspect the visible extension flow across multiple sites in the owner's installed Chrome after the manual installation step. Record the actual browser, source revision, state, and result separately from automated Chromium runs. Complete release packaging and verify current deployment bytes after publication. Preserve earlier verification as historical evidence.
+Inspect the visible extension flow across multiple sites in the owner's installed Chrome after the manual installation step. Record the actual browser, source revision, state, and result separately from automated Chromium runs. Deployment bytes are verified. Release archives and checksums are recorded in the parent outputs folder. Preserve earlier verification as historical evidence.
 
 ## Operations
 

@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-27T06:25:37.899036+00:00",
+  "checkedAt": "2026-11-27T18:11:37.195534+00:00",
   "url": "https://clearview-brown.vercel.app",
-  "sourceRevision": "86676fa7176cdeec8f03d8505e1c1f2f929f4b6a",
+  "sourceRevision": "690e28bf19f04c995fa759892de39a18a4be5090",
   "status": "PASS",
   "exactStaticAssetMatches": [
     {
@@ -59,21 +59,93 @@
       "status": 200
     },
     {
-      "path": "assets/index-CF173xBh.js",
-      "bytes": 280663,
-      "sha256": "aed00f32c71faa1b30ba338a5e0469596d11fd34e46d466f7d4aad3ec4ab8111",
+      "path": "assets/index-BArohdx3.js",
+      "bytes": 320042,
+      "sha256": "f54aac0b913933ec71721c613f43264f500761b2f254f468291f51a7e5b7cd7f",
       "status": 200
     },
     {
-      "path": "assets/index-CSZSckdf.css",
-      "bytes": 42775,
-      "sha256": "8fd3ea78e4e123dd08375df6ae0db27dfffb98fade0be82d9d163dbf27d45bdb",
+      "path": "assets/index-BDzfqFmG.css",
+      "bytes": 39210,
+      "sha256": "1ccce29b40808fca1d58110d945701a94fbebcb409607490dcbfa6e1b25012f0",
+      "status": 200
+    },
+    {
+      "path": "downloads/clearview-extension.zip",
+      "bytes": 443639,
+      "sha256": "3c4f547af5828d3a88a33b16444b73f0cc16c8e2624e1527b8bb5498210a4e20",
       "status": 200
     },
     {
       "path": "favicon.svg",
       "bytes": 348,
       "sha256": "dbb2919b270109d1e66057da62a7c678e239e54b94d953ff2ed3c85910e05a71",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBM-Plex-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+      "status": 200
+    },
+    {
+      "path": "fonts/ibm-plex.css",
+      "bytes": 2654,
+      "sha256": "ee78818f962ac88f7d4dd59ad4f72e874ba97c90f1c26602015229b4a2ff12d8",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexMono-400.woff2",
+      "bytes": 14648,
+      "sha256": "7ced53420784c93cecccb7c27237594f0e41e5a7990581565f0aef8eda9e9d2f",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexMono-500.woff2",
+      "bytes": 14904,
+      "sha256": "6e618344335cc436ffd25deba4f4cb5a60ca6c3a4832e67f236ca43922f74eea",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexMono-600.woff2",
+      "bytes": 15588,
+      "sha256": "cecb8f0bc58b996a828bc0a23e2814e4acec33f0f531adf565c0248e242061e1",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexSans-400.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexSans-500.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexSans-600.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "status": 200
+    },
+    {
+      "path": "fonts/IBMPlexSans-700.woff2",
+      "bytes": 45712,
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "status": 200
+    },
+    {
+      "path": "fonts/Inter-latin.woff2",
+      "bytes": 48256,
+      "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62",
+      "status": 200
+    },
+    {
+      "path": "fonts/Inter-OFL.txt",
+      "bytes": 4377,
+      "sha256": "5b9321a4298cfeb6b34354164a1c3afc3db114569984c502b9b35d988fd58c57",
       "status": 200
     },
     {
@@ -96,14 +168,14 @@
     },
     {
       "path": "index.html",
-      "bytes": 608,
-      "sha256": "5635c9acfc3ec751c3574c9a884be274fe69d254308821ee00994eeec5e1e772",
+      "bytes": 655,
+      "sha256": "5541f80da146ba4e5630686934a184abe3a0a47dc46b496d1afd37c16134536b",
       "status": 200
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 12449,
-      "sha256": "91a704b735d81729b0a72c05712af2b539767b63a08780ce515510c0026e035c",
+      "bytes": 22393,
+      "sha256": "719a0aab18279bc9e42090fa84fb7aae9f72c58fb501d6fb77a2f61fe26e91ff",
       "status": 200
     }
   ],
