@@ -8,3 +8,6 @@
 - Host-controlled data-clearview-id attributes cannot establish element identity. An internal WeakMap prevents copied attributes from redirecting repairs to replacement nodes.
 - Raw outerHTML is unsafe evidence for form controls because it can contain value attributes. Reports use safe element descriptions and exclude input, textarea, and editable-field values.
 - A root Vite 6 override keeps the React Vite plugin and workspace config on the same type definitions. This also removes the nested Vite 5 development-server dependency from Vitest 2.
+- Control height alone does not establish a usable target. The previous All filter was about17px wide despite sufficient height. Check both dimensions in browser tests.
+- A two-column currency total can overlap when text grows. Intrinsic wrapping and a stacked phone layout preserve exact amounts; a diagnostic doubled-text check covers this failure separately from browser zoom.
+- Inline themed SVGs need unique mask and gradient identifiers. Spotkit artwork uses React useId, and its source SVG remains available for the geometry checker.

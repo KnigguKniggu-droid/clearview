@@ -64,6 +64,7 @@ test('findings filters and locate controls work', async ({ page }) => {
   await expect(page.getByTestId('portal-root').locator('[data-clearview-id]')).not.toHaveCount(0);
   await page.getByRole('button', { name: /^Hidden Fees/ }).click();
   await expect(page.locator('[data-finding-category="hidden-fee"]').first()).toBeVisible();
+  await expect(page.locator('#audit-heading')).toHaveText('Audit findings 1 of 10');
 });
 
 test('safe mode enables Enter and Space on the sample payment control', async ({ page }) => {
@@ -108,12 +109,39 @@ test('mobile receipt jump focuses the review, repairs the page, and returns to a
   await expect(page.getByTestId('facility-fee')).toContainText('$149.00');
 });
 
+test('receipt totals remain separate when phone text is doubled', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.getByTestId('receipt-due')).toHaveText('$334.00');
+  await page.getByRole('link', { name: 'Receipt & Safe Mode' }).click();
+  // A diagnostic text-size override, not a claim of OS/browser zoom coverage.
+  await page.locator('.guard-column *').evaluateAll(elements => {
+    for (const element of elements) {
+      if (element instanceof HTMLElement && !element.children.length && element.textContent?.trim()) {
+        element.style.fontSize = `${parseFloat(getComputedStyle(element).fontSize) * 2}px`;
+      }
+    }
+  });
+  const due = await page.getByTestId('receipt-due').boundingBox();
+  const monthly = await page.getByTestId('receipt-monthly').boundingBox();
+  expect(due).not.toBeNull(); expect(monthly).not.toBeNull();
+  expect(due!.x + due!.width).toBeLessThanOrEqual(390);
+  expect(monthly!.x + monthly!.width).toBeLessThanOrEqual(390);
+  expect(due!.y + due!.height).toBeLessThanOrEqual(monthly!.y);
+  await expect(page.getByTestId('receipt-due')).toHaveText('$334.00');
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$29.99');
+});
+
 for (const width of [375, 768, 1440]) {
   test(`layout fits ${width}px and app chrome has no automated accessibility violations`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
     await expect(page.getByTestId('safe-toggle')).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     expect(overflow).toBe(false);
+    for (const filter of await page.locator('.filter-tabs button').all()) {
+      const box = await filter.boundingBox();
+      expect(box!.width).toBeGreaterThanOrEqual(44);
+      expect(box!.height).toBeGreaterThanOrEqual(44);
+    }
     const audit = await new AxeBuilder({ page })
       .include('.topbar').include('.intro-experience').include('.workspace-heading')
       .include('.scenario-bar').include('.workspace-toolbar').include('[data-testid="guard-panel"]')

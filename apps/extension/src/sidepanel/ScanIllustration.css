@@ -1,0 +1,15 @@
+.scan-illustration {
+  --il-ghost: #e1e8ef;
+  --il-panel-top: #f9fbfd;
+  --il-panel: #edf2f7;
+  --il-line: #a5b1bd;
+  --il-surface: #fff;
+  --il-stroke: #13283e;
+  --il-stroke-soft: #7c8996;
+  --il-fill: #d2d3d5;
+  --il-accent: #245dce;
+  display: block;
+  width: 160px;
+  height: auto;
+  margin: -20px auto -12px;
+}

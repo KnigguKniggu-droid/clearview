@@ -15,7 +15,8 @@
 .intro-enter:active { transform: scale(.98); transition: transform 80ms ease-out; }
 .intro-entry-note { display: block; margin-top: 13px; color: #bdcede; font-size: 12px; }
 .intro-handoff { position: absolute; left: clamp(24px, 5vw, 96px); bottom: 36px; display: grid; grid-template-columns: 2px auto; column-gap: 18px; row-gap: 8px; max-width: 390px; clip-path: none; }
-.intro-handoff-rule { grid-row: span 2; width: 2px; background: #c7ef72; }
+.intro-handoff-rule { position: relative; grid-row: span 2; width: 2px; background: #5c7284; }
+.intro-handoff-rule::after { content: ""; position: absolute; inset: 0; background: #c7ef72; transform: scaleY(calc(.15 + var(--intro-p, 0) * .85)); transform-origin: top; }
 .intro-handoff p { color: #c7ef72; font-size: 24px; font-weight: 400; line-height: 1.2; letter-spacing: -.6px; }
 .intro-handoff strong { font-weight: 550; color: #fff; }
 .intro-handoff>span { color: #c8d8e7; font-size: 13px; line-height: 1.6; }
@@ -37,13 +38,14 @@
   .intro-handoff { position: relative; left: auto; bottom: auto; margin: 420px 24px 12px; max-width: 330px; clip-path: none; column-gap: 15px; }
   .intro-handoff p { font-size: 22px; }
   .intro-handoff>span { font-size: 12px; }
-  .intro-continue { right: 24px; bottom: 32px; width: 40px; height: 40px; }
+  .intro-continue { right: 24px; bottom: 32px; width: 44px; height: 44px; }
 }
 @media (max-width: 380px) { .intro-copy { padding: 28px 20px 0; } .intro-copy h1 { font-size: 40px; } .intro-copy>p { max-width: 29ch; } .intro-handoff { margin-left: 20px; margin-top: 385px; } .intro-stage { min-height: 820px; } }
 @media (prefers-reduced-motion: reduce) {
   .intro-experience { height: auto; min-height: 0; }
   .intro-stage { position: relative; height: calc(100svh - 72px); }
   .intro-handoff { clip-path: none; }
+  .intro-handoff-rule::after { transform: none; }
   .intro-environment { transform: none; }
   .intro-enter { transition: none; }
   .intro-enter:hover, .intro-enter:active { transform: none; }

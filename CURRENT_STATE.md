@@ -6,26 +6,23 @@ Deliver the ClearView master spec: working sandbox, Chrome extension, public sou
 ## Verified baseline
 Runtime69573d45746457fb9f6f7fd40bacf536cbdea767 passed39unit/integration tests, lint, workspace types/builds, and11Chromium tests locally and on Vercel. Analyzer coverage97.92%lines/statements,98.21%functions,91.60%branches. Actual extension scan/locate/repair/revert and permission/navigation checks passed. Production dependency audit reports0advisories;7development-tool entries remain under the specified Vitest2 stack.
 
-## Current work
-Second visual redesign replaces the rejected beige revision. Actual Limora artwork is integrated with navy/cobalt/lime visuals, illustrated scenarios, a clearer cost receipt, and a short layered introduction. Workers are correcting desktop stage height, mobile receipt navigation, and long charge labels. Verification of this revision is in progress; it is not yet the deployed revision.
+## Current runtime and publication
+Published runtime `6f9617617c3e6e7b78dabdf4b324ed4686008866` passed integrated tests, types, lint, builds,12browser tests, and actual extension runtime/rollback checks. A further refinement is now in progress at the owner's request. It includes additional design skills, public reference review, semantic style consolidation, text-growth fixes, an original mark, and a Spotkit extension illustration. This working tree is not yet the next verified release.
 
-Limora OAuth completed. Two generations finished using8promotional credits;2remain. No credits purchased. Source asset IDs and processing are recorded in docs/ARTWORK_PROVENANCE.md. PRODUCT.md and DESIGN.md record known facts and the authored direction. Impeccable's absent launcher used its documented reference-reading fallback.
+The source is public at https://github.com/KnigguKniggu-droid/clearview. The redesigned sandbox is live at https://clearview-brown.vercel.app. All17deployed static files match the published runtime bytes; standalone route and security headers pass. The live site passes12/12browser tests. GitHub CI run45950204285 passed against6f96176.
 
-## Publication
-The owner approved public source at https://github.com/KnigguKniggu-droid/clearview and Vercel publication. The repository exists; the first push was rejected for missing workflow scope. The owner approved the scope, OAuth completed on2026-11-27, and the new push remains to be verified.
+Limora OAuth and two generations completed using8promotional credits;2remain. No credits purchased. See docs/ARTWORK_PROVENANCE.md. PRODUCT.md and DESIGN.md record known facts and the authored direction. Impeccable's absent launcher used its documented fallback.
 
-The first redesign is live at https://clearview-brown.vercel.app.11deployedbrowser tests passed. The second redesign will replace it after verification. No video upload or Devpost submission has occurred.
+The owner approved this GitHub and Vercel publication and the GitHub CLI workflow scope. No video upload or Devpost submission has occurred.
 
 ## Video
-Final capture remains on hold until the second redesign has a verified runtime pin. Narration and68timedcaption cues are prepared. Earlier medical footage is intermediate and superseded. No final encode or final review is complete. Video worker owns work/video and final media outputs.
+Capture is held until the refinement is verified and pinned. The completed53-second medical capture of6f96176 is intermediate. Narration and68timedcaption cues are prepared. No final encode or final review is complete. Video worker owns work/video and final media outputs. The worker is integrating an isolated Remocn scene during the hold.
 
 ## Remaining work
-1. Finish visual corrections and measured desktop/mobile/reduced-motion checks.
-2. Run full regression gates and commit the verified runtime.
-3. Push approved GitHub source, confirm CI, update Vercel, and verify public files/behavior.
-4. Capture final film, complete two independent critique rounds, encode, and check frames/captions/audio/decode.
-5. Refresh before/after comparison, source/extension archives, manifest, and release documents.
-6. Leave Devpost team/eligibility and video-hosting approval for the owner; do not infer them.
+1. Complete and verify the current refinement. Publish the new verified runtime under the existing authorization.
+2. Capture final film, complete two independent critique rounds, encode, and check frames/captions/audio/decode.
+3. Refresh before/after comparison, source/extension archives, manifest, and release documents.
+4. Leave Devpost team/eligibility and video-hosting approval for the owner; do not infer them.
 
 ## Operations
 Production preview http://127.0.0.1:4173. Work files belong in the parent workspace work/ folder. Only user deliverables belong in outputs/. Do not copy the private Vercel staging .env.local into the repository or releases. Use one heavy capture/render browser at a time when memory is low. Preserve all other workers' edits.

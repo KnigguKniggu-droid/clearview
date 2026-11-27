@@ -1,6 +1,6 @@
 # Devpost draft — ClearView
 
-**Draft status:** Review against the final build and evidence before submitting. Public URLs and team details remain owner-supplied release information.
+**Draft status:** Review against the final build and evidence before submitting. The app and source are public. Team details and eligibility remain owner-supplied information. This draft has not been submitted.
 
 ## Tagline
 
@@ -50,11 +50,11 @@ TypeScript, React, Vite, Tailwind CSS, Lucide, npm workspaces, Vitest, JSDOM, Ch
 
 | Field | State |
 | --- | --- |
-| Live demo URL | Not published |
-| Source repository URL | Not published |
+| Live demo URL | https://clearview-brown.vercel.app |
+| Source repository URL | https://github.com/KnigguKniggu-droid/clearview |
 | Demo video URL | Not published |
 | Extension release URL | Not published |
 | Team member names | Owner must provide |
 | Participant eligibility | Owner must confirm against current event rules |
-| Test and browser evidence | 33 analyzer tests, 6 extension integration tests, and 10 Chromium browser tests pass; actual extension tested on W3C educational page; see docs/VERIFICATION.md |
-| AI and third-party attribution | Codex-assisted implementation and review with ECC workflows; React, Lucide, and Tailwind notices are included; video uses local Microsoft Zira narration |
+| Test and browser evidence | Published runtime6f96176 passed33analyzer tests,6extension integration tests, and12Chromium browser tests; actual extension tested on W3C educational page; see docs/VERIFICATION.md |
+| AI and third-party attribution | Codex-assisted implementation and review with ECC and documented design skills. Intro/scenario artwork generated with Limora. Third-party notices are included. Video uses local Microsoft Zira narration. See FRONTEND_SKILLS.md, DESIGN_REFERENCES.md, and ARTWORK_PROVENANCE.md. |

@@ -27,13 +27,14 @@ export function IntroExperience({ artwork = defaultArtwork }: { artwork?: IntroA
     let desiredY = 0;
     let x = 0;
     let y = 0;
+    let pageTop = 0;
+    let travel = 1;
+    let compact = window.innerWidth < 800;
+    let disposed = false;
     const paint = () => {
       frame = 0;
       if (!visible || document.hidden) return;
-      const compact = window.innerWidth < 800;
-      const rect = element.getBoundingClientRect();
-      const travel = compact ? Math.max(rect.height * .65, 1) : Math.max(element.offsetHeight - stage.offsetHeight, 1);
-      const progress = reduced.matches ? 1 : clamp(-rect.top / travel);
+      const progress = reduced.matches ? 1 : clamp((window.scrollY - pageTop) / travel);
       x += (desiredX - x) * .12;
       y += (desiredY - y) * .12;
       if (reduced.matches || compact) { x = 0; y = 0; }
@@ -51,6 +52,15 @@ export function IntroExperience({ artwork = defaultArtwork }: { artwork?: IntroA
       if (Math.abs(desiredX - x) + Math.abs(desiredY - y) > .005 && !reduced.matches && !compact) schedule();
     };
     const schedule = () => { if (!frame && visible && !document.hidden) frame = requestAnimationFrame(paint); };
+    // Cache layout only when its dimensions can change. Pointer easing paints transforms.
+    const measure = () => {
+      if (disposed) return;
+      compact = window.innerWidth < 800;
+      const rect = element.getBoundingClientRect();
+      pageTop = rect.top + window.scrollY;
+      travel = compact ? Math.max(rect.height * .65, 1) : Math.max(element.offsetHeight - stage.offsetHeight, 1);
+      schedule();
+    };
     const onPointer = (event: PointerEvent) => {
       if (!finePointer.matches || reduced.matches) return;
       const rect = stage.getBoundingClientRect();
@@ -59,24 +69,35 @@ export function IntroExperience({ artwork = defaultArtwork }: { artwork?: IntroA
       schedule();
     };
     const resetPointer = () => { desiredX = 0; desiredY = 0; schedule(); };
+    const onPreference = () => { desiredX = 0; desiredY = 0; measure(); };
     const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) schedule(); else if (frame) { cancelAnimationFrame(frame); frame = 0; } });
+    const resizeObserver = new ResizeObserver(measure);
     observer.observe(element);
+    resizeObserver.observe(element);
+    resizeObserver.observe(stage);
+    const precedingHeader = element.parentElement?.previousElementSibling;
+    if (precedingHeader) resizeObserver.observe(precedingHeader);
     window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
+    window.addEventListener('resize', measure);
     document.addEventListener('visibilitychange', schedule);
     stage.addEventListener('pointermove', onPointer, { passive: true });
     stage.addEventListener('pointerleave', resetPointer);
-    reduced.addEventListener('change', schedule);
-    schedule();
+    reduced.addEventListener('change', onPreference);
+    finePointer.addEventListener('change', onPreference);
+    void document.fonts.ready.then(measure);
+    measure();
     return () => {
+      disposed = true;
       cancelAnimationFrame(frame);
       observer.disconnect();
+      resizeObserver.disconnect();
       window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
+      window.removeEventListener('resize', measure);
       document.removeEventListener('visibilitychange', schedule);
       stage.removeEventListener('pointermove', onPointer);
       stage.removeEventListener('pointerleave', resetPointer);
-      reduced.removeEventListener('change', schedule);
+      reduced.removeEventListener('change', onPreference);
+      finePointer.removeEventListener('change', onPreference);
     };
   }, []);
 

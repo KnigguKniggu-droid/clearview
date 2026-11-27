@@ -2,6 +2,8 @@
 
 The owner explicitly requested these skills and parallel work. This file records the parts applied to ClearView. Reading a skill is not evidence that a visual or functional check passed.
 
+Additional installed GitHub skills and the AffectUI, PrettySites, MotionSites, and21st reference review are recorded in [DESIGN_REFERENCES.md](DESIGN_REFERENCES.md). Its applications and limits are separate from verification results.
+
 | Skill | Applied work | Limit |
 |---|---|---|
 | Limora Unslop | Two actual image generations, one coherent material direction, transparent object-sheet splitting, illustrated scenario selectors, and layered introduction | Only two generations; six object crops are derivatives. No purchased credits. |

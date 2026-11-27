@@ -1,0 +1,9 @@
+.clearview-brand { --clearview-source: #c7ef72; display: inline-flex; align-items: center; gap: 8px; color: #fff; white-space: nowrap; }
+.clearview-brand-light { --clearview-source: #245dce; color: #13283e; }
+.clearview-brand .clearview-mark { width: 36px; height: 36px; flex: 0 0 auto; }
+.brand-mark .clearview-mark { width: 32px; height: 32px; color: #fff; --clearview-source: #c7ef72; }
+.clearview-mark-source { fill: var(--clearview-source, currentColor); }
+.clearview-wordmark { font-family: "Manrope Display", sans-serif; font-size: 24px; font-weight: 750; line-height: 1.2; letter-spacing: -.9px; }
+.clearview-brand-compact { gap: 6px; }
+.clearview-brand-compact .clearview-mark { width: 32px; height: 32px; }
+.clearview-brand-compact .clearview-wordmark { font-size: 22px; }

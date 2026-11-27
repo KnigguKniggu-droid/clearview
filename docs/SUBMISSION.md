@@ -19,13 +19,13 @@ The rules page says winners will be announced on November 21, 2026. That date pr
 | Analyzer | Root `npm test` output and exit code | 33 tests pass; coverage thresholds pass |
 | Types | Root `npm run typecheck` output and exit code | All workspaces pass |
 | Production build | Root `npm run build` output and exit code | All workspaces pass |
-| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 11 Chromium tests passed on the previous runtime; final redesign is undergoing verification |
+| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 12 Chromium tests pass locally and on the live Vercel site |
 | Extension | Load unpacked; scan; locate; repair; revert; tab navigation; restricted-page error | Six message tests and real Chromium runtime flow pass |
 | Privacy | Inspect source, bundles, and network behavior | Source review and browser no-submission/no-external-request assertions pass |
 | Video | Real product proof; runtime; readable captions; decode and audio checks | Pending production and verification |
 | ZIPs | Archive inventory; expected entry points; no secrets or dependencies folder | Extension and source ZIPs pass CRC and inventory checks; source is regenerated after final documentation updates |
-| Public source | Approved repository contents and destination | Awaiting final revision verification |
-| Public demo | Approved Vercel project and deployed smoke test | https://clearview-brown.vercel.app; previous runtime deployed and checked |
+| Public source | Approved repository contents and destination | Published at https://github.com/KnigguKniggu-droid/clearview |
+| Public demo | Approved Vercel project and deployed smoke test | https://clearview-brown.vercel.app; final runtime deployed;17static files match;12browser tests pass |
 | Submission | Owner eligibility, team details, reviewed writeup, valid links | Not submitted |
 
 ## Approval boundary

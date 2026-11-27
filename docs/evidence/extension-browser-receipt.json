@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-27T06:07:12.546Z",
+  "checkedAt": "2026-11-27T06:24:59.170Z",
   "status": "PASS",
   "browser": "Chrome/159.0.8154.6",
   "method": "Real unpacked Chromium extension; CDP Extensions.triggerAction invokes the toolbar action. No host permission changes.",

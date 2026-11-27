@@ -1,0 +1,261 @@
+{
+  "url": "http://127.0.0.1:4173/",
+  "checkedAt": "2026-11-27T06:24:02.093Z",
+  "checks": [
+    {
+      "name": "Desktop has one original brand",
+      "pass": true,
+      "count": 1
+    },
+    {
+      "name": "Pointer interruption settles to latest target",
+      "pass": true,
+      "target": -17.5,
+      "end": {
+        "x": -17.398960277022464,
+        "y": -5.275258727525396,
+        "state": "paper:-7,-3;frame:-17,-5",
+        "p": 0,
+        "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+        "width": 1440,
+        "overflow": 1440
+      }
+    },
+    {
+      "name": "Pointer interruption settles to latest target",
+      "pass": true,
+      "target": 17.5,
+      "end": {
+        "x": 17.395807883544588,
+        "y": -5.275861979867604,
+        "state": "paper:7,-3;frame:17,-5",
+        "p": 0,
+        "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+        "width": 1440,
+        "overflow": 1440
+      }
+    },
+    {
+      "name": "Intermediate interruption samples",
+      "pass": true,
+      "samples": [
+        {
+          "x": -14.577224496304577,
+          "y": -4.3947100451913315,
+          "state": "paper:-6,-2;frame:-15,-4",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        },
+        {
+          "x": 9.552528309999701,
+          "y": -5.085822993543526,
+          "state": "paper:4,-3;frame:10,-5",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        },
+        {
+          "x": -10.636210344152868,
+          "y": -5.234876121917973,
+          "state": "paper:-5,-3;frame:-11,-5",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        },
+        {
+          "x": 10.876504792070076,
+          "y": -5.275747560421261,
+          "state": "paper:5,-3;frame:11,-5",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        },
+        {
+          "x": -10.545461833312247,
+          "y": -5.275834005113142,
+          "state": "paper:-5,-3;frame:-11,-5",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        },
+        {
+          "x": 11.271415636702839,
+          "y": -5.275856742709656,
+          "state": "paper:5,-3;frame:11,-5",
+          "p": 0,
+          "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+          "width": 1440,
+          "overflow": 1440
+        }
+      ]
+    },
+    {
+      "name": "Scroll rail reflects actual short alignment",
+      "pass": true,
+      "geometry": {
+        "top": 72,
+        "travel": 220
+      },
+      "mid": {
+        "x": -47.09757064852482,
+        "y": 12.083517703258236,
+        "state": "paper:-12,-32;frame:-47,12",
+        "p": 0.5,
+        "rail": "matrix(1, 0, 0, 0.575, 0, 0)",
+        "width": 1440,
+        "overflow": 1440
+      },
+      "end": {
+        "x": -94.0453122079251,
+        "y": 24.038785962711938,
+        "state": "paper:-24,-64;frame:-94,24",
+        "p": 1,
+        "rail": "matrix(1, 0, 0, 1, 0, 0)",
+        "width": 1440,
+        "overflow": 1440
+      }
+    },
+    {
+      "name": "Resize refreshes cached geometry",
+      "pass": true,
+      "resized": {
+        "x": -94.03508977381719,
+        "y": 24.030035849524126,
+        "state": "paper:-24,-64;frame:-94,24",
+        "p": 1,
+        "rail": "matrix(1, 0, 0, 1, 0, 0)",
+        "width": 1024,
+        "overflow": 1024
+      },
+      "expected": 1
+    },
+    {
+      "name": "Keyboard entry focuses actual workspace",
+      "pass": true,
+      "id": "live-audit",
+      "hash": "#live-audit"
+    },
+    {
+      "name": "Live reduced-motion switch produces static alignment",
+      "pass": true,
+      "reducedStart": {
+        "x": -44,
+        "y": 0,
+        "state": "static-alignment",
+        "p": 1,
+        "rail": "none",
+        "width": 1024,
+        "overflow": 1024
+      },
+      "reducedEnd": {
+        "x": -44,
+        "y": 0,
+        "state": "static-alignment",
+        "p": 1,
+        "rail": "none",
+        "width": 1024,
+        "overflow": 1024
+      }
+    },
+    {
+      "name": "Touch viewport keeps immediate CTA and width",
+      "pass": true,
+      "mobile": {
+        "x": 0,
+        "y": 0,
+        "state": "paper:0,0;frame:0,0",
+        "p": 0,
+        "rail": "matrix(1, 0, 0, 0.15, 0, 0)",
+        "width": 390,
+        "overflow": 390
+      },
+      "cta": {
+        "x": 24,
+        "y": 277.6875,
+        "width": 191.9375,
+        "height": 50
+      }
+    },
+    {
+      "name": "Touch entry uses real anchor",
+      "pass": true,
+      "hash": "#live-audit"
+    },
+    {
+      "name": "Failed decorative media leaves text and entry usable",
+      "pass": true,
+      "headline": "See what you’re\nagreeing to."
+    },
+    {
+      "name": "Failed-media entry focuses workspace",
+      "pass": true,
+      "focus": "live-audit"
+    },
+    {
+      "name": "Initial extension at 320",
+      "pass": true,
+      "width": 320,
+      "content": 320,
+      "brand": 1,
+      "art": {
+        "width": 160,
+        "height": 160
+      },
+      "scan": true,
+      "text": "See what the page is asking.\n\nInspect selected add-ons, hard-to-read fees, and common accessibility problems.\n\nOpen the page you want to inspect.\nClick the ClearView toolbar icon on that tab.\nScan the page, then review each source.\n\nPages stay on your device. ClearView does not submit forms or make payments."
+    },
+    {
+      "name": "Initial extension at 420",
+      "pass": true,
+      "width": 420,
+      "content": 420,
+      "brand": 1,
+      "art": {
+        "width": 160,
+        "height": 160
+      },
+      "scan": true,
+      "text": "See what the page is asking.\n\nInspect selected add-ons, hard-to-read fees, and common accessibility problems.\n\nOpen the page you want to inspect.\nClick the ClearView toolbar icon on that tab.\nScan the page, then review each source.\n\nPages stay on your device. ClearView does not submit forms or make payments."
+    },
+    {
+      "name": "Manifest contains all supplied icon sizes",
+      "pass": true,
+      "icons": {
+        "16": "icons/icon-16.png",
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+      }
+    },
+    {
+      "name": "No page runtime errors",
+      "pass": true,
+      "errors": []
+    }
+  ],
+  "screenshots": [
+    "docs/evidence/brand/after-desktop.png",
+    "docs/evidence/brand/after-scroll-midpoint.png",
+    "docs/evidence/brand/after-scroll-resolve.png",
+    "docs/evidence/brand/after-keyboard-focus.png",
+    "docs/evidence/brand/after-reduced-motion.png",
+    "docs/evidence/brand/after-mobile-touch.png",
+    "docs/evidence/brand/failed-media.png",
+    "docs/evidence/brand/after-extension-initial-320.png",
+    "docs/evidence/brand/after-extension-initial-420.png"
+  ],
+  "errors": [],
+  "source": {
+    "apps/web-sandbox/src/components/IntroExperience.tsx": "6841fcd7a07ae4de19424b5bb3fc33c5ab9e0bcf75ba3ef8339a06c35e4be016",
+    "apps/web-sandbox/src/components/IntroExperience.css": "5524fc3649442dac66f176877c4ea791063f238f7acd2e9a03838ee1cb23a03a",
+    "packages/brand/ClearViewBrand.tsx": "42df526f31bc881b1a093e9acf573ce10a755700ccd48fdf8f7267b40ad2e066"
+  },
+  "browser": "159.0.8154.6",
+  "status": "PASS"
+}

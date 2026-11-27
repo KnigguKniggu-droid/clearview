@@ -1,0 +1,23 @@
+import { useId } from 'react';
+import './ScanIllustration.css';
+
+// Adapted from Spotkit L12. Phosphor regular icons. MIT notices ship with the extension.
+export function ScanIllustration() {
+  const id = useId();
+  return <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A page becomes an itemized receipt" className="scan-illustration">
+  <defs>
+    <linearGradient id={`fadeG-scan-page-${id}`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.7" stopColor="#fff"/><stop offset="0.82" stopColor="#000"/>
+    </linearGradient>
+    <mask id={`fade-scan-page-${id}`}><rect width="160" height="160" fill={`url(#fadeG-scan-page-${id})`}/></mask>
+    <linearGradient id={`panelG-scan-page-${id}`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stopColor="var(--il-panel-top, #FCFBF9)"/>
+      <stop offset="1" stopColor="var(--il-panel, #F7F5F2)"/>
+    </linearGradient>
+  </defs>
+  <g mask={`url(#fade-scan-page-${id})`}>
+<rect x="15" y="34" width="130" height="106" rx="16" fill="var(--il-ghost, #EAE7E2)" stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/><rect x="22" y="30" width="116" height="100" rx="10" fill={`url(#panelG-scan-page-${id})`} stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/><g><rect x="28.0" y="62.0" width="44.0" height="44.0" rx="8.0" fill="var(--il-surface, #FFFFFF)" stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/></g><rect x="36.0" y="71.0" width="18.0" height="4.6" rx="2.30" fill="var(--il-fill, #DCD6CE)"/><rect x="36.0" y="80.0" width="26.0" height="4.6" rx="2.30" fill="var(--il-fill, #DCD6CE)"/><circle cx="38.5" cy="93.5" r="3.2" fill="none" stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/><g><rect x="88.0" y="62.0" width="44.0" height="44.0" rx="8.0" fill="var(--il-surface, #FFFFFF)" stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/></g><rect x="96.0" y="71.0" width="18.0" height="4.6" rx="2.30" fill="var(--il-fill, #DCD6CE)"/><rect x="96.0" y="80.0" width="26.0" height="4.6" rx="2.30" fill="var(--il-fill, #DCD6CE)"/><g transform="translate(95.00 89.00) scale(0.03516)" fill="var(--il-accent, #3E9077)"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/></g><g transform="translate(74.00 78.00) scale(0.04688)" fill="var(--il-stroke-soft, #9B948A)"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></g><rect x="56.0" y="116.0" width="48.0" height="4.6" rx="2.30" fill="var(--il-fill, #DCD6CE)"/>
+  </g>
+<g><circle cx="80" cy="37" r="17" fill="var(--il-surface, #FFFFFF)" stroke="var(--il-line, #B9B1A4)" strokeWidth="0.5"/></g><g transform="translate(72.50 29.50) scale(0.05859)" fill="var(--il-stroke, #35322D)"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></g>
+</svg>;
+}

@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-27T05:51:16.739427+00:00",
+  "checkedAt": "2026-11-27T06:11:02.573510+00:00",
   "url": "https://clearview-brown.vercel.app",
-  "sourceRevision": "69573d45746457fb9f6f7fd40bacf536cbdea767",
+  "sourceRevision": "6f9617617c3e6e7b78dabdf4b324ed4686008866",
   "status": "PASS",
   "exactStaticAssetMatches": [
     {
@@ -13,25 +13,97 @@
     {
       "path": "index.html",
       "bytes": 608,
-      "sha256": "5bc23e19a0d511b6788061ddae75a8d6c023d0a588b0f4f629c2502ca52b33d5",
+      "sha256": "4acaad5e7a1f64b88208ee7bbf7cce3d40befb482ab6d7a5de6aafb9156e8777",
       "status": 200
     },
     {
       "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 5436,
-      "sha256": "bed15c807a9a73e2b0d9a4678a6c8fe84fa70f9052648805e0f42a7aa69be0ea",
+      "bytes": 9844,
+      "sha256": "35dda82dbaed5b40e7a8b1e7faf9aaa3f40550673df4e9644ced64442f50e1b2",
       "status": 200
     },
     {
-      "path": "assets/index-D-RJ2zHi.css",
-      "bytes": 27323,
-      "sha256": "40d6c6e2eff7043b668a57e2af940ce25812de6d7586ad41f7e48b07b16ee42b",
+      "path": "art/electric-meter.webp",
+      "bytes": 63052,
+      "sha256": "b31f944fe8927ab693a33ef4ebb5352071cc1ec87f83d8ea009baf56460baf3f",
       "status": 200
     },
     {
-      "path": "assets/index-j4dlz5es.js",
-      "bytes": 271913,
-      "sha256": "cdad003c0e85829a70bea6dcc42a1739c3334e2e58eb9bf94e9fb50f3f25d47e",
+      "path": "art/folded-receipt.webp",
+      "bytes": 36280,
+      "sha256": "e336f7a91d515cad0f09befa7d09750f972c535b89c094182903ca68d1f5b1a4",
+      "status": 200
+    },
+    {
+      "path": "art/inspection-frame.webp",
+      "bytes": 48390,
+      "sha256": "08de0ea533e1373c4cb260cdd6bb4be8bd18e786c463891e3ab568d1d5d06487",
+      "status": 200
+    },
+    {
+      "path": "art/intro-background.webp",
+      "bytes": 58150,
+      "sha256": "221715bb4ea6f7deedd7c6ce8b97a0e709e3e2496c1332355c645ac1bcc2a609",
+      "status": 200
+    },
+    {
+      "path": "art/intro-frame.webp",
+      "bytes": 52120,
+      "sha256": "e8b7ab316124e7716876d2c3dc111059c499072232ee97c88c6ca8666e096ea0",
+      "status": 200
+    },
+    {
+      "path": "art/intro-receipt.webp",
+      "bytes": 45132,
+      "sha256": "2e3f640618ee6e219706ec7aee363451b8671cc6ea7115491c7f2b098fcdd68f",
+      "status": 200
+    },
+    {
+      "path": "art/magnifier.webp",
+      "bytes": 55930,
+      "sha256": "a45fdfe125790c367e2bbcd56af435fb42bebcd5cf42abb81df0ea2840b52f68",
+      "status": 200
+    },
+    {
+      "path": "art/medical-clipboard.webp",
+      "bytes": 36172,
+      "sha256": "8d21f6f92338cac1761ea976aad18071f402f26e6bac37937fb3911852419e54",
+      "status": 200
+    },
+    {
+      "path": "art/router.webp",
+      "bytes": 46034,
+      "sha256": "7be3ecddb1f5a051f603c4b2aee9aea5581c5869fbf66c260ec8efde7c25543c",
+      "status": 200
+    },
+    {
+      "path": "assets/index-D0OyYlt7.css",
+      "bytes": 42690,
+      "sha256": "7e6397df7b77b9bad850545b993a111bff30c113fe26855432b4778d8491a5f7",
+      "status": 200
+    },
+    {
+      "path": "assets/index-DEoTv2Bz.js",
+      "bytes": 279416,
+      "sha256": "5a1b085b7b6e2dc1f968001d33cb33562634911d7d44695556b4f446f8c24c3a",
+      "status": 200
+    },
+    {
+      "path": "fonts/Manrope-OFL.txt",
+      "bytes": 4386,
+      "sha256": "d6a309fcfb963d329a93baf9df66fa5f3c23a4be2b5f67edf24d6cafecde12ac",
+      "status": 200
+    },
+    {
+      "path": "fonts/Manrope-Variable.ttf",
+      "bytes": 164700,
+      "sha256": "3ae11c49db0455a3cc33e37d380f20fdb8c7f8b41dc07625c177e3d87a9d6ae6",
+      "status": 200
+    },
+    {
+      "path": "fonts/Manrope-Variable.woff2",
+      "bytes": 53824,
+      "sha256": "af9e02c20829b5559efe9ffe337ec3711e3034bab476759e2fa85528bdf21147",
       "status": 200
     }
   ],

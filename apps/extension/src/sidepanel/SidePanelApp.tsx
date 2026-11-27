@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, Check, Eye, Info, LocateFixed, LockKeyhole, Receipt, RefreshCw, RotateCcw, ScanLine, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { AlertTriangle, Check, Info, LocateFixed, LockKeyhole, Receipt, RefreshCw, RotateCcw, ScanLine, ShieldCheck, ShieldAlert } from 'lucide-react';
 import type { AuditFinding, AuditReport, FindingCategory, FinancialCommitment } from '@clearview/analyzer';
+import { ScanIllustration } from './ScanIllustration';
+import { ClearViewMark } from '../../../../packages/brand/ClearViewBrand';
 import type { GuardAction, GuardRequest, GuardResponse } from '../protocol';
 
 type Filter = 'all' | FindingCategory;
@@ -161,13 +163,13 @@ export function SidePanelApp() {
   const excluded = report?.financialCommitments.filter(item => !item.includedInTotals) ?? [];
 
   return <div className="panel">
-    <header className="brand"><div className="brand-mark"><ShieldCheck size={23} aria-hidden="true" /></div><div><h1>ClearView</h1><p>Your page, made clear.</p></div><span className="local"><LockKeyhole size={12} aria-hidden="true" /> On device</span></header>
+    <header className="brand"><div className="brand-mark"><ClearViewMark /></div><div><h1>ClearView</h1><p>Your page, made clear.</p></div><span className="local"><LockKeyhole size={12} aria-hidden="true" /> On device</span></header>
     <main>
       <section className="page-context" aria-label="Current page"><strong title={tab?.title}>{tab?.title || 'Finding your active tab…'}</strong><span className="host"><span className="live-dot" />{hostname(tab?.url)}</span></section>
       <button className="scan-button" disabled={busy || !tab} onClick={() => { void run('scan'); }}><ScanLine size={17} aria-hidden="true" />{busy ? 'Working on this page…' : report ? 'Scan page again' : 'Scan active tab'}{report && !busy && <RefreshCw size={14} aria-hidden="true" />}</button>
       {error && <div className="error" role="alert"><AlertTriangle size={18} aria-hidden="true" /><p>{error}</p></div>}
       <p className="notice" role="status" aria-live="polite">{notice}</p>
-      {!report && <section className="intro"><Eye size={30} aria-hidden="true" /><h2>See what the page is asking.</h2><p>Inspect selected add-ons, hard-to-read fees, and common accessibility problems.</p><ol><li>Open the page you want to inspect.</li><li>Click the ClearView toolbar icon on that tab.</li><li>Scan the page, then review each source.</li></ol><p className="footnote">Pages stay on your device. ClearView does not submit forms or make payments.</p></section>}
+      {!report && <section className="intro"><ScanIllustration /><h2>See what the page is asking.</h2><p>Inspect selected add-ons, hard-to-read fees, and common accessibility problems.</p><ol><li>Open the page you want to inspect.</li><li>Click the ClearView toolbar icon on that tab.</li><li>Scan the page, then review each source.</li></ol><p className="footnote">Pages stay on your device. ClearView does not submit forms or make payments.</p></section>}
       {report && <>
         <section className="receipt" aria-labelledby="receipt-title"><div className="section-title"><Receipt size={18} aria-hidden="true" /><h2 id="receipt-title">Page receipt</h2></div><div className="totals"><div><span>Due today · USD</span><strong key={`today-${report.summary.totalImmediateDue}`}>{money(report.summary.totalImmediateDue)}</strong></div><div><span>Monthly · USD</span><strong key={`monthly-${report.summary.totalRecurringMonthly}`}>{money(report.summary.totalRecurringMonthly)}</strong></div></div><p className="footnote">Current fixed charges found on this page. Confirm the final amount with the provider.</p>{included.length ? <ul>{included.map(item => <ReceiptLine key={item.id} item={item} locate={locate} busy={busy} />)}</ul> : <p className="empty-line">No current fixed USD charges identified.</p>}{excluded.length > 0 && <details><summary>Other price disclosures ({excluded.length})</summary><ul>{excluded.map(item => <ReceiptLine key={item.id} item={item} locate={locate} busy={busy} />)}</ul></details>}</section>
         <button className={`safe-button ${report.safeModeActive ? 'active' : ''}`} aria-pressed={report.safeModeActive} disabled={busy || (!report.safeModeActive && !repairable)} onClick={() => { void run(report.safeModeActive ? 'revert' : 'apply'); }}>{report.safeModeActive ? <RotateCcw size={20} aria-hidden="true" /> : <ShieldCheck size={20} aria-hidden="true" />}<span>{report.safeModeActive ? 'Revert changes' : 'Apply safe mode'}<small>{report.safeModeActive ? 'Safe mode is on. Restore the recorded page state.' : `${repairable} findings have a local repair`}</small></span></button>

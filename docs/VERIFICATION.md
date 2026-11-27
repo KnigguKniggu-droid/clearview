@@ -1,8 +1,8 @@
 # Verification evidence
 
-Client date: November 26, 2026. All commands below ran locally. Remote CI and public deployment have not run.
+Initial checks ran November 26, 2026. Subsequent redesign and publication checks ran November 27. Each section identifies its revision or stage. Later evidence supersedes earlier measurements only for the stated check.
 
-## Completed checks
+## Initial completed checks
 
 | Check | Observed result |
 | --- | --- |
@@ -53,11 +53,11 @@ The public [runtime receipt](evidence/extension-browser-receipt.json) records th
 
 ## Limits and pending checks
 
-- No prior screenshot baseline exists. Visual regression is INCONCLUSIVE. Current desktop and mobile layouts were inspected manually.
+- Screenshots from the original and revised interfaces are retained. They document the redesign; they are not a pre-existing automated visual regression suite.
 - One ECC Chrome DevTools trace of a warm production-preview reload measured LCP138ms and CLS0.06 with no throttling. Four requests returned304; no console warnings/errors or HTTP errors appeared. INP and real-user metrics remain UNKNOWN. This local lab observation does not predict deployment or mobile-network performance. See evidence/performance-smoke.json.
 - Screen-reader behavior and a complete WCAG audit remain manual review tasks. The sample portals intentionally contain accessibility defects.
 - Demo video render, audio measurements, and final frame review are pending.
-- The owner approved GitHub and Vercel publication. The first redesign is live; the second redesign and final source push remain to be verified.
+- GitHub and Vercel publication are complete. The final runtime passes the deployed browser suite.
 
 The project is a working prototype with documented scope limits, not accessibility certification or a financial audit.
 
@@ -72,3 +72,10 @@ A new ECC warm local trace measured LCP115ms and CLS0.00 with no throttling. INP
 Final motion correction: a midpoint review found the handoff text clipped through words. Its clipping was removed. The final sandbox assets are index-DEoTv2Bz.js and index-D0OyYlt7.css. Desktop1440x1000 and1440x768, mobile390/360, pointer reversal, and reduced-motion views passed the targeted visual script. The source art planes remain independent; measured pointer views differed in9.82%of pixels. See evidence/intro/receipt.json and its contact sheet.
 
 The aligned navy/cobalt extension passed the real Chromium runtime script again, including320/420px width checks, reduced motion, activeTab permission gating, public-page source location, supported repairs, and rollback with no captured differences. Final runtime evidence is in evidence/extension-browser-receipt.json.
+
+
+## Public release verification
+
+Runtime `6f9617617c3e6e7b78dabdf4b324ed4686008866` is public on the GitHub main branch and deployed at https://clearview-brown.vercel.app. The final source push succeeded after the owner-approved workflow scope was added. Public HTTP checks confirmed all17static files match the local build byte for byte. The standalone sample returned200. The nosniff and no-referrer headers are present. The complete12-test Chromium suite passed against the deployed URL. See evidence/deployment-check.json.
+
+GitHub Actions run45950204285 passed on this revision. A Node20 action-deprecation warning appeared; it did not fail the run. A subsequent frontend refinement is in progress. Its verification is recorded separately when completed.
