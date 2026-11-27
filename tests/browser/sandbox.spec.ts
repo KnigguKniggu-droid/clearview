@@ -387,6 +387,9 @@ test('invalid and oversized reports show an error without replacing evidence', a
   await importFile(page, ' '.repeat(1_048_577));
   await expect(page.getByRole('alert')).toContainText('too large');
   await expect(page.getByTestId('receipt-due')).toHaveText('$334.00');
+  await page.getByTestId('portal-root').locator('input[type=checkbox]').uncheck();
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$0.00');
+  await expect(page.getByRole('alert')).toContainText('too large');
   await page.getByRole('button', { name: 'Dismiss error' }).click();
   await expect(page.getByRole('alert')).toHaveCount(0);
 });

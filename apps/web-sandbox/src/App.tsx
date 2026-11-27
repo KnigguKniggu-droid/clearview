@@ -100,11 +100,12 @@ function Workspace() {
   const selectedOptions = view === 'workspace' && root.current && report ? removalCandidates(root.current, report, report.findings.map(item => item.id)).map(candidate => candidate.item) : [];
   useAuditMotion(view === 'workspace' ? report : null);
 
-  const scan = useCallback(() => {
+  const scan = useCallback((clearError = false) => {
     if (!root.current) return;
     try {
       const result = scanDocument(root.current);
-      setReport(result); setError('');
+      setReport(result);
+      if (clearError) setError('');
       return result;
     } catch (cause) {
       setReport(null);
@@ -148,7 +149,7 @@ function Workspace() {
     setView('workspace'); setError(''); setNotice(next === scenario ? 'Sample restored to its starting state.' : '');
   };
   const rescan = () => {
-    const result = scan();
+    const result = scan(true);
     if (result) setNotice('Scan updated. ' + result.summary.totalFindings + ' findings on this page.');
   };
   const apply = (ids: string[]) => {
