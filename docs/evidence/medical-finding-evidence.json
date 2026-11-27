@@ -7,7 +7,7 @@
   {
     "rule": "DP-001",
     "evidence": "Priority Telehealth Membership Enroll in on-demand care. Billed monthly. $29.99/mo Recommended",
-    "explanation": "This add-on or recurring option is checked. Confirm that you intended to select it."
+    "explanation": "This choice is checked. A scan cannot establish who selected it or whether it is optional."
   },
   {
     "rule": "WCAG-3.3.2",

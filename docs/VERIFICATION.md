@@ -2,6 +2,50 @@
 
 Initial checks ran November 26, 2026. Subsequent redesign and publication checks ran November 27. Each section identifies its revision or stage. Later evidence supersedes earlier measurements only for the stated check.
 
+## Current stage — Warm Civic Daylight, November 27
+
+This section records the current stage. The earlier sections below remain historical evidence and are not deleted. Warm Civic Daylight supersedes the dark Guard HUD and the older `86676fa` video interface.
+
+| Check | Current observed status |
+| --- | --- |
+| Daylight web source build | PASS after final filter-semantics and review-footer fixes; emitted `index-BmNBwrbf.js` and `index-BDzfqFmG.css` |
+| Daylight extension interface | PASS; lint, build, and final unpacked Chromium runtime passed; panel assets `index-DwQrynLZ.js` / `index-BNoosXM1.css`; compact source marker verified |
+| Integrated unit/integration, lint, types, build | PASS, `npm run verify` exit 0: 129 tests (56 analyzer + 52 reporting + 21 extension), lint, types, and production builds; later web changes passed a fresh web build and the browser suite |
+| Updated automated web browser suite | PASS, all 21 tests in 20.3 seconds on the final web build |
+| Visible multi-site use in the owner's installed Chrome | Pending; earlier automated Chromium extension checks do not establish this result |
+| Current release packaging and publication | Pending; prior publication authorization remains in force |
+| Screen-reader behavior | UNKNOWN |
+| Actual browser zoom | UNKNOWN |
+| Complete WCAG AAA conformance | Not established; no such claim is made |
+
+The preceding dark revision passed **123 unit/integration tests and 21 Chromium browser tests**. Those results describe that revision only. Earlier analyzer, reporting, extension, and web regression evidence remains useful history, but it is not a substitute for the current integrated gate.
+
+The final [web daylight evidence](evidence/daylight-ui-audit.json) is dated `2026-11-27T18:06:09.511Z`. The corrected, calibrated text-contrast check found zero violations and zero incomplete checks across 12 combinations: workspace, repair review, saved report, and installation at 375/768/1440 px. The browser suite verified 16 px body/14 px metadata, 44 px controls/52 px primary actions, 3 px focus, 64 px desktop header, 55/45 desktop panes, and the partial-repair headline. A real focus-obscuration issue in the sticky review footer was corrected by keeping actions in normal flow. Native Tab checks then passed at all three widths. Four `daylight-*.png` screenshots accompany the evidence.
+
+The final [extension runtime receipt](evidence/extension-browser-receipt.json) records PASS at `2026-11-27T18:07:13.843Z`. The test used an unpacked Chromium extension, not the owner's installed Chrome profile. It verified 320/420 px layouts, 3 px keyboard focus, preservation of selected add-ons under the default review, explicit verified $29.99 monthly removal, restore, and W3C 47 → 41 → 47 findings with exact rollback. Its calibrated 7:1 check measured 12 initial, 170 expanded-review, and 45 active text nodes, with zero violations and zero incomplete results in each state. The compact 14 px `✓` marker retained its title and specified colors without expanding the narrow progress row. Repaired text used at least 16 px. These scoped results do not establish complete AAA conformance.
+
+**Contrast evidence correction:** earlier 17:56/18:02 runtime claims of a custom 7:1 check were invalid because the configuration was ignored. The final runs use the corrected top-level check configuration. A controlled `#666`-on-white specimen at 5.74:1 failed against an observed 7:1 threshold for both 16 px normal and 28 px bold text; `#111827`-on-white passed at a measured 17.73:1. The final receipts supersede the earlier 7:1 measurement claims. Solid-pair mathematical ratios below remain valid. This calibration and the scoped product results do not establish full AAA conformance.
+
+The owner's Chrome profile is available. The computer-use tool blocks the `chrome://extensions` installation page and explicitly forbids workarounds. Manual Load unpacked is required after the daylight extension build is ready. Ordinary web-page checks and visible multi-site extension checks in that profile are still pending. Existing profile data remains untouched.
+
+The daylight source uses Inter, 16 px body text, 14 px metadata, a 64 px minimum desktop header, and a 55/45 desktop workspace. Scenario labels are Medical Bill, Internet Checkout, and Senior Tax Form. Repair selection remains explicit and technical details are collapsed. See [DESIGN.md](../DESIGN.md) for source guidance and the exact palette.
+
+The following are calculations for opaque solid text/background pairs, not rendered whole-app accessibility measurements:
+
+| Pair | Contrast |
+| --- | ---: |
+| `#111827` / `#F6F5F1` | 16.261157:1 |
+| `#111827` / `#FFFFFF` | 17.739717:1 |
+| `#374151` / `#F6F5F1` | 9.448264:1 |
+| `#374151` / `#FFFFFF` | 10.307356:1 |
+| White / `#0F4C81` | 8.856709:1 |
+| White / `#0A365C` | 12.388547:1 |
+| Error text `#991B1B` / `#FEF2F2` | 7.596644:1 |
+| Warning text `#78350F` / `#FFFBEB` | 8.748451:1 |
+| Applied-change text `#065F46` / `#ECFDF5` | 7.294078:1 |
+
+The original error/warning accent colors do not reach 7:1 on their pale fills and are not the body-text tokens. Passing these pairs and any future axe check does not establish full AAA conformance. Deliberately defective sample portals remain outside app-chrome assertions. The historical film, its playback/listening limitations, and its exact motion exceptions remain recorded below and in VIDEO_VERIFICATION.md.
+
 ## Initial completed checks
 
 | Check | Observed result |

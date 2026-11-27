@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-27T06:24:59.170Z",
+  "checkedAt": "2026-11-27T18:07:13.843Z",
   "status": "PASS",
   "browser": "Chrome/159.0.8154.6",
   "method": "Real unpacked Chromium extension; CDP Extensions.triggerAction invokes the toolbar action. No host permission changes.",
@@ -8,6 +8,68 @@
       "name": "No page access before toolbar action",
       "denied": true,
       "error": "Cannot access contents of the page. Extension manifest must request permission to access the respective host."
+    },
+    {
+      "name": "Contrast threshold validated by normal/large 5.74:1 failures and a high-contrast control",
+      "controls": [
+        {
+          "label": "normal below7",
+          "violations": 1,
+          "incomplete": 0,
+          "data": [
+            {
+              "fgColor": "#666666",
+              "bgColor": "#ffffff",
+              "contrastRatio": 5.74,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "normal",
+              "messageKey": null,
+              "expectedContrastRatio": "7:1"
+            }
+          ]
+        },
+        {
+          "label": "large below7",
+          "violations": 1,
+          "incomplete": 0,
+          "data": [
+            {
+              "fgColor": "#666666",
+              "bgColor": "#ffffff",
+              "contrastRatio": 5.74,
+              "fontSize": "21.0pt (28px)",
+              "fontWeight": "bold",
+              "messageKey": null,
+              "expectedContrastRatio": "7:1"
+            }
+          ]
+        },
+        {
+          "label": "high contrast",
+          "violations": 0,
+          "incomplete": 0,
+          "data": [
+            {
+              "fgColor": "#111827",
+              "bgColor": "#ffffff",
+              "contrastRatio": 17.73,
+              "fontSize": "12.0pt (16px)",
+              "fontWeight": "normal",
+              "expectedContrastRatio": "7:1"
+            }
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Initial instructions text contrast at 7:1 threshold",
+      "violations": [],
+      "incomplete": [],
+      "thresholds": [
+        "7:1"
+      ],
+      "measuredPasses": 12
     },
     {
       "name": "Local medical report through real sidepanel",
@@ -28,12 +90,79 @@
       "content": 420
     },
     {
+      "name": "Warm review and all expanded disclosures text contrast at 7:1 threshold",
+      "violations": [],
+      "incomplete": [],
+      "thresholds": [
+        "7:1"
+      ],
+      "measuredPasses": 170
+    },
+    {
+      "name": "Self-hosted Inter font loaded",
+      "ui": true,
+      "data": true,
+      "faces": [
+        {
+          "family": "Inter",
+          "status": "loaded",
+          "weight": "100 900"
+        }
+      ],
+      "computed": "Inter, sans-serif"
+    },
+    {
+      "name": "Native Tab and Enter reach the review with 3px focus",
+      "id": "change-review",
+      "outline": "3px",
+      "passed": true
+    },
+    {
+      "name": "Current monthly extra is linked to its real option source",
+      "text": "$29.99/month in currently selected extras.",
+      "passed": true
+    },
+    {
       "name": "Reduced motion disables amount settlement",
       "reduced": true,
       "animation": "none"
     },
     {
-      "name": "Local safe repair and live receipt",
+      "name": "Changed page blocks Apply before any unreviewed selection changes",
+      "passed": true
+    },
+    {
+      "name": "Default selection repairs access while preserving chosen subscription",
+      "passed": true
+    },
+    {
+      "name": "Score count-up settles to actual report values",
+      "during": [
+        68,
+        32
+      ],
+      "settled": [
+        {
+          "label": "Trust checks: 100 out of 100",
+          "displayed": 100
+        },
+        {
+          "label": "Access checks: 100 out of 100",
+          "displayed": 100
+        }
+      ]
+    },
+    {
+      "name": "Active repair panel text contrast at 7:1 threshold",
+      "violations": [],
+      "incomplete": [],
+      "thresholds": [
+        "7:1"
+      ],
+      "measuredPasses": 45
+    },
+    {
+      "name": "Explicitly selected local repair and live receipt",
       "totals": [
         "$334.00",
         "$0.00"
@@ -42,7 +171,104 @@
       "checkboxChecked": false
     },
     {
-      "name": "Local revert restores checkbox",
+      "name": "Real page badges use 14px civic colors and repaired text is at least16px",
+      "measurements": [
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": "16px"
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": "16px"
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": "16px"
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": "16px"
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": null
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": null
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": "16px"
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · option cleared",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": null
+        },
+        {
+          "symbol": "✓",
+          "title": "ClearView · adjusted",
+          "badgeSize": "14px",
+          "badgeColor": "rgb(6, 95, 70)",
+          "badgeBackground": "rgb(236, 253, 245)",
+          "targetSize": null
+        }
+      ],
+      "passed": true
+    },
+    {
+      "name": "Compact repair badges preserve the medical progress row bounds",
+      "left": 321,
+      "right": 1119,
+      "minimumChildLeft": 353,
+      "maximumChildRight": 1084,
+      "passed": true
+    },
+    {
+      "name": "Only the verified selected monthly extra is struck from the receipt",
+      "summary": "$29.99/month in selected monthly extras removed from this page. Confirm the provider’s total; this does not cancel a subscription.",
+      "strike": "$29.99/mo",
+      "collapsed": false,
+      "passed": true
+    },
+    {
+      "name": "Local revert restores the explicitly changed checkbox",
+      "passed": true
+    },
+    {
+      "name": "Detached repair session expires and a newly reviewed set can be applied",
       "passed": true
     },
     {
@@ -89,10 +315,17 @@
     }
   ],
   "screenshots": [
+    "docs/evidence/extension-panel-initial-320.png",
+    "docs/evidence/extension-panel-initial-420.png",
     "docs/evidence/extension-panel-320.png",
+    "docs/evidence/extension-panel-preview-320.png",
     "docs/evidence/extension-panel-420.png",
+    "docs/evidence/extension-panel-preview-420.png",
     "docs/evidence/extension-panel-reduced-motion.png",
     "docs/evidence/extension-medical-panel-before.png",
+    "docs/evidence/extension-panel-active-320.png",
+    "docs/evidence/extension-panel-active-420.png",
+    "docs/evidence/extension-panel-verified-removal.png",
     "docs/evidence/extension-medical-panel-after.png",
     "docs/evidence/extension-w3c-panel-before.png",
     "docs/evidence/extension-w3c-panel-after.png",

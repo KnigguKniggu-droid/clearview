@@ -1,4 +1,5 @@
 import { chromium } from '@playwright/test';
+import axe from 'axe-core';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve, relative } from 'node:path';
 
@@ -22,6 +23,12 @@ async function saveReceipt() {
     screenshots: receipt.screenshots.filter(path => !path.includes('failure')).map(path => relative(root, path).replaceAll('\\', '/'))
   }, null, 2));
 }
+const contrastResultExpression = `axe.run(document,{runOnly:{type:'rule',values:['color-contrast']}}).then(result=>({
+  violations:result.violations.map(rule=>({id:rule.id,nodes:rule.nodes.map(node=>({target:node.target,summary:node.failureSummary,data:node.any.map(check=>check.data)}))})),
+  incomplete:result.incomplete.map(rule=>({id:rule.id,nodes:rule.nodes.map(node=>({target:node.target,data:node.any.map(check=>check.data)}))})),
+  thresholds:[...new Set(result.passes.flatMap(rule=>rule.nodes.flatMap(node=>node.any.map(check=>check.data?.expectedContrastRatio))).filter(Boolean))],
+  measuredPasses:result.passes.flatMap(rule=>rule.nodes.flatMap(node=>node.any.map(check=>check.data?.contrastRatio))).filter(value=>typeof value==='number').length
+}))`;
 let currentPanel;
 const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 async function attach(session, targetId) {
@@ -101,6 +108,32 @@ try {
   });
   receipt.panelTabs = await panel.evaluate('chrome.tabs.query({active:true,currentWindow:true})');
   await until(() => panel.evaluate(`Boolean(document.querySelector('.scan-button:not(:disabled)'))`), 'panel ready');
+  await panel.evaluate('document.fonts.ready');
+  await panel.evaluate(axe.source);
+  // The product requires 7:1 for all panel text, including large headings.
+  await panel.evaluate(`axe.configure({checks:[{id:'color-contrast',options:{ignoreUnicode:true,ignoreLength:false,ignorePseudo:false,boldValue:700,boldTextPt:14,largeTextPt:18,contrastRatio:{normal:{expected:7},large:{expected:7}},pseudoSizeThreshold:.25,shadowOutlineEmMax:.1,textStrokeEmMin:.03}}]})`);
+  const thresholdControls = await panel.evaluate(`(async()=>{
+    const controls=[];
+    for(const sample of [{label:'normal below7',color:'#666666',size:16,bold:false},{label:'large below7',color:'#666666',size:28,bold:true},{label:'high contrast',color:'#111827',size:16,bold:false}]){
+      const node=document.createElement('div');
+      node.style.cssText='position:relative;padding:12px;background:#fff;color:'+sample.color+';font-size:'+sample.size+'px;font-weight:'+(sample.bold?700:400);
+      node.textContent='Contrast threshold verification sample';document.body.append(node);
+      try{
+        const result=await axe.run(node,{runOnly:{type:'rule',values:['color-contrast']}});
+        controls.push({label:sample.label,violations:result.violations.length,incomplete:result.incomplete.length,data:[...result.violations,...result.passes].flatMap(rule=>rule.nodes.flatMap(item=>item.any.map(check=>check.data))).filter(Boolean)});
+      }finally{node.remove()}
+    }
+    return controls;
+  })()`);
+  if(thresholdControls.some((control,index)=>control.incomplete || control.violations !== (index<2?1:0) || !control.data.some(data=>data.expectedContrastRatio==='7:1'))) throw new Error(`7:1 threshold controls failed: ${JSON.stringify(thresholdControls)}`);
+  receipt.checks.push({name:'Contrast threshold validated by normal/large 5.74:1 failures and a high-contrast control',controls:thresholdControls,passed:true});
+  const initialContrast = await panel.evaluate(contrastResultExpression);
+  receipt.checks.push({ name: 'Initial instructions text contrast at 7:1 threshold', ...initialContrast });
+  if (initialContrast.violations.length || initialContrast.incomplete.length || initialContrast.thresholds.join() !== '7:1') throw new Error('Initial instructions need contrast review.');
+  for (const width of [320, 420]) {
+    await panel.send('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
+    await panel.screenshot(resolve(evidence, `extension-panel-initial-${width}.png`));
+  }
   await click(panel, '.scan-button');
   await until(() => panel.evaluate(`Boolean(document.querySelector('.safe-button'))`), 'local report');
   const localBefore = await panel.evaluate(`({totals:Array.from(document.querySelectorAll('.totals strong')).map(e=>e.textContent), findings:document.querySelector('.count')?.textContent,error:document.querySelector('.error')?.textContent})`);
@@ -113,7 +146,33 @@ try {
     const layout = await panel.evaluate('({viewport:innerWidth,content:document.documentElement.scrollWidth})');
     receipt.checks.push({ name: `Sidepanel ${width}px has no horizontal overflow`, ...layout });
     if (layout.content > layout.viewport) throw new Error(`Sidepanel overflows at ${width}px.`);
+    await panel.evaluate(`document.querySelector('.repair-preview').scrollIntoView({block:'start'})`);
+    await panel.screenshot(resolve(evidence, `extension-panel-preview-${width}.png`));
   }
+
+  await panel.evaluate(`document.querySelectorAll('details').forEach(element=>{element.open=true})`);
+  const contrast = await panel.evaluate(contrastResultExpression);
+  receipt.checks.push({ name: 'Warm review and all expanded disclosures text contrast at 7:1 threshold', ...contrast });
+  if (contrast.violations.length || contrast.incomplete.length || contrast.thresholds.join() !== '7:1') throw new Error(`Sidepanel contrast failure: ${JSON.stringify(contrast)}`);
+  await panel.evaluate(`document.querySelectorAll('details').forEach(element=>{element.open=false})`);
+  const fonts = await panel.evaluate(`document.fonts.ready.then(()=>({ui:document.fonts.check('16px "Inter"'),data:document.fonts.check('700 16px "Inter"'),faces:Array.from(document.fonts).map(face=>({family:face.family,status:face.status,weight:face.weight})),computed:getComputedStyle(document.body).fontFamily}))`);
+  receipt.checks.push({ name: 'Self-hosted Inter font loaded', ...fonts });
+  if (!fonts.ui || !fonts.data) throw new Error('Inter panel font did not load.');
+  await panel.evaluate("document.querySelector('.scan-button').focus()");
+  for (let key = 0; key < 2; key++) {
+    await panel.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+    await panel.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
+  }
+  const reviewFocused = await panel.evaluate("document.activeElement?.classList.contains('review-link')");
+  if (!reviewFocused) throw new Error('Keyboard traversal did not reach the review action.');
+  await panel.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13, text: '\r', unmodifiedText: '\r' });
+  await panel.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
+  const keyboardReview = await panel.evaluate("({id:document.activeElement?.id,outline:getComputedStyle(document.activeElement).outlineWidth})");
+  if (keyboardReview.id !== 'change-review' || keyboardReview.outline !== '3px') throw new Error(`Review did not receive visible keyboard focus: ${JSON.stringify(keyboardReview)}`);
+  receipt.checks.push({ name: 'Native Tab and Enter reach the review with 3px focus', ...keyboardReview, passed: true });
+  const selectedExtra = await panel.evaluate("document.querySelector('.extra-summary')?.textContent");
+  if (!selectedExtra?.includes('$29.99/month in currently selected extras')) throw new Error('Selected extra lacks exact DOM-linked amount.');
+  receipt.checks.push({ name: 'Current monthly extra is linked to its real option source', text: selectedExtra, passed: true });
   await panel.send('Emulation.setDeviceMetricsOverride', { width: 380, height: 900, deviceScaleFactor: 1, mobile: false });
   await panel.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await panel.screenshot(resolve(evidence, 'extension-panel-reduced-motion.png'));
@@ -123,18 +182,80 @@ try {
   await panel.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
   await panel.screenshot(resolve(evidence, 'extension-medical-panel-before.png'));
   await page.screenshot({ path: resolve(evidence, 'extension-medical-page-before.png') });
+  // A changed page must not expand the reviewed repair selection.
+  await page.evaluate(() => {
+    const row = document.createElement('label'); row.id = 'late-subscription';
+    row.innerHTML = '<input type="checkbox" checked> Late monthly membership $99/mo';
+    document.body.append(row);
+  });
   await click(panel, '.safe-button');
-  await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='true'`), 'local safe mode');
+  await until(() => panel.evaluate(`Boolean(document.querySelector('.error'))`), 'stale review rejection');
+  const staleChoicePreserved = await page.locator('#late-subscription input').isChecked();
+  const staleDisabled = await panel.evaluate(`document.querySelector('.safe-button').disabled`);
+  if (!staleChoicePreserved || !staleDisabled) throw new Error('A stale review changed an unreviewed selection.');
+  receipt.checks.push({ name: 'Changed page blocks Apply before any unreviewed selection changes', passed: true });
+  await page.locator('#late-subscription').evaluate(element => element.remove());
+  await click(panel, '.scan-button');
+  await until(() => panel.evaluate(`!document.querySelector('.error') && !document.querySelector('.safe-button').disabled`), 'fresh review');
+  const addonDefault = await panel.evaluate(`document.querySelector('[data-rule="DP-001"] input').checked`);
+  if (addonDefault) throw new Error('Optional financial change was selected by default.');
+  await click(panel, '.safe-button');
+  await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='true'`), 'selected readability repairs');
+  const keptChoice = await page.locator('input[type=checkbox]').isChecked();
+  if (!keptChoice || !await page.locator('input[placeholder]').first().getAttribute('aria-label')) throw new Error('Readability repair did not preserve the intended add-on.');
+  receipt.checks.push({ name: 'Default selection repairs access while preserving chosen subscription', passed: true });
+  await click(panel, '.safe-button');
+  await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='false'`), 'selected repairs reverted');
+  await click(panel, '[data-rule="DP-001"] input');
+  await click(panel, '.safe-button');
+  await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='true'`), 'explicit financial change');
+  const scoresDuring = await panel.evaluate(`Array.from(document.querySelectorAll('.score-number strong')).map(element=>Number(element.textContent))`);
+  await sleep(400);
+  const scoreSettlement = await panel.evaluate(`Array.from(document.querySelectorAll('.score')).map(element=>({label:element.getAttribute('aria-label'),displayed:Number(element.querySelector('strong').textContent)}))`);
+  if (scoreSettlement.some(item => !item.label.includes(': ' + item.displayed + ' out of 100'))) throw new Error('Animated scores did not settle to actual report values.');
+  receipt.checks.push({ name: 'Score count-up settles to actual report values', during: scoresDuring, settled: scoreSettlement });
+  const activeContrast = await panel.evaluate(contrastResultExpression);
+  receipt.checks.push({ name: 'Active repair panel text contrast at 7:1 threshold', ...activeContrast });
+  if (activeContrast.violations.length || activeContrast.incomplete.length || activeContrast.thresholds.join() !== '7:1') throw new Error('Active repair panel has a text contrast violation.');
   const localAfter = await panel.evaluate(`({totals:Array.from(document.querySelectorAll('.totals strong')).map(e=>e.textContent),findings:document.querySelector('.count')?.textContent})`);
   const localCheckbox = await page.locator('input[type=checkbox]').isChecked();
-  receipt.checks.push({ name: 'Local safe repair and live receipt', ...localAfter, checkboxChecked: localCheckbox });
-  if (localAfter.totals.join('|') !== '$334.00|$0.00' || localCheckbox) throw new Error('Local safe repair failed.');
+  receipt.checks.push({ name: 'Explicitly selected local repair and live receipt', ...localAfter, checkboxChecked: localCheckbox });
+  const repairTypography = await page.locator('[data-clearview-badge]').evaluateAll(badges => badges.map(badge => {
+    const badgeStyle = getComputedStyle(badge);
+    const target = badge.previousElementSibling;
+    return { symbol: badge.textContent, title: badge.getAttribute('title'), badgeSize: badgeStyle.fontSize, badgeColor: badgeStyle.color, badgeBackground: badgeStyle.backgroundColor, targetSize: target instanceof HTMLElement && target.style.fontSize ? getComputedStyle(target).fontSize : null };
+  }));
+  if (!repairTypography.length || repairTypography.some(item => item.symbol !== '✓' || !['ClearView · adjusted','ClearView · option cleared'].includes(item.title) || item.badgeSize !== '14px' || item.badgeColor !== 'rgb(6, 95, 70)' || item.badgeBackground !== 'rgb(236, 253, 245)' || item.targetSize && parseFloat(item.targetSize) < 16)) throw new Error(`Injected repair typography mismatch: ${JSON.stringify(repairTypography)}`);
+  if (!repairTypography.some(item => item.targetSize !== null)) throw new Error('No repaired text target was measured.');
+  receipt.checks.push({ name: 'Real page badges use 14px civic colors and repaired text is at least16px', measurements: repairTypography, passed: true });
+  const progressFit = await page.locator('.portal-progress').evaluate(element => {
+    const bounds=element.getBoundingClientRect();
+    const parts=[...element.querySelectorAll('span,b')].map(part=>part.getBoundingClientRect());
+    return {left:bounds.left,right:bounds.right,minimumChildLeft:Math.min(...parts.map(part=>part.left)),maximumChildRight:Math.max(...parts.map(part=>part.right))};
+  });
+  if(progressFit.minimumChildLeft<progressFit.left-1 || progressFit.maximumChildRight>progressFit.right+1) throw new Error(`Repair badges overflow the progress row: ${JSON.stringify(progressFit)}`);
+  receipt.checks.push({name:'Compact repair badges preserve the medical progress row bounds',...progressFit,passed:true});
+
+
+  if (localAfter.totals.join('|') !== '$334.00|$0.00' || localCheckbox) throw new Error('Explicit local repair failed.');
+  const removedExtra = await panel.evaluate("({summary:document.querySelector('.extra-summary')?.textContent,strike:document.querySelector('.removed-extras s')?.textContent,collapsed:!!document.querySelector('.removed-extras')?.closest('details')})");
+  if (!removedExtra.summary?.includes('$29.99/month') || !removedExtra.strike?.includes('29.99') || removedExtra.collapsed) throw new Error('Verified removal is not clearly shown in the actual receipt.');
+  receipt.checks.push({ name: 'Only the verified selected monthly extra is struck from the receipt', ...removedExtra, passed: true });
+  for (const width of [320, 420]) {
+    await panel.send('Emulation.setDeviceMetricsOverride', { width, height: 900, deviceScaleFactor: 1, mobile: false });
+    await panel.evaluate("document.querySelector('.summary-card').scrollIntoView({block:'start'})");
+    await panel.screenshot(resolve(evidence, `extension-panel-active-${width}.png`));
+    const layout = await panel.evaluate('({viewport:innerWidth,content:document.documentElement.scrollWidth})');
+    if (layout.content > layout.viewport) throw new Error(`Active sidepanel overflows at ${width}px.`);
+  }
+  await panel.evaluate("document.querySelector('.removed-extras').scrollIntoView({block:'center'})");
+  await panel.screenshot(resolve(evidence, 'extension-panel-verified-removal.png'));
   await panel.screenshot(resolve(evidence, 'extension-medical-panel-after.png'));
   await page.screenshot({ path: resolve(evidence, 'extension-medical-page-after.png') });
   await click(panel, '.safe-button');
   await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='false'`), 'local revert');
   if (!await page.locator('input[type=checkbox]').isChecked()) throw new Error('Local revert did not restore checkbox.');
-  receipt.checks.push({ name: 'Local revert restores checkbox', passed: true });
+  receipt.checks.push({ name: 'Local revert restores the explicitly changed checkbox', passed: true });
 
   receipt.medicalFindingEvidence = await panel.evaluate(`(async()=>{
     const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
@@ -143,6 +264,17 @@ try {
     return response.report.findings.map(item=>({rule:item.ruleId,evidence:item.evidenceText,explanation:item.plainLanguageExplanation}));
   })()`);
   await writeFile(resolve(evidence, 'medical-finding-evidence.json'), JSON.stringify(receipt.medicalFindingEvidence, null, 2));
+  await page.evaluate(() => { document.body.innerHTML = '<main style="background:#fff;color:#111827;font-size:16px"><input placeholder="Initial field"></main>'; });
+  await click(panel, '.scan-button');
+  await until(() => panel.evaluate(`document.querySelector('.repair-option')?.textContent.includes('Initial field')`), 'replacement fixture report');
+  await click(panel, '.safe-button');
+  await until(() => panel.evaluate(`document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='true'`), 'fixture apply');
+  await page.evaluate(() => { document.body.innerHTML = '<main style="background:#fff;color:#111827;font-size:16px"><input placeholder="Replacement field"></main>'; });
+  await click(panel, '.scan-button');
+  await until(() => panel.evaluate(`Boolean(document.querySelector('.session-warning')) && document.querySelector('.safe-button')?.getAttribute('aria-pressed')==='false'`), 'expired repair recovery');
+  await click(panel, '.safe-button');
+  await until(() => page.locator('input').getAttribute('aria-label').then(value => value === 'Replacement field'), 'fresh reviewed replacement repair');
+  receipt.checks.push({ name: 'Detached repair session expires and a newly reviewed set can be applied', passed: true });
   await page.goto('https://www.w3.org/WAI/demos/bad/before/home.html', { waitUntil: 'load' });
   await page.screenshot({ path: resolve(evidence, 'extension-w3c-page-initial.png') });
   await sleep(1000);

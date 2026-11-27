@@ -1,5 +1,5 @@
 import { auditAria } from './ariaAudit';
-import { isSafeModeActive } from './autoRepair';
+import { getRepairStatus } from './autoRepair';
 import { auditContrast } from './contrast';
 import { auditDarkPatterns } from './darkPatterns';
 import { extractReceipt, receiptTotals } from './receiptExtractor';
@@ -13,7 +13,7 @@ export {parseColor,relativeLuminance,contrastRatio,resolveBackground,getContrast
 export function scanDocument(root:AuditRoot):AuditReport {
   const findings=[...auditDarkPatterns(root),...auditAria(root),...auditContrast(root)];
   const financialCommitments=extractReceipt(root);
-  return registerReport(root,{timestamp:new Date().toISOString(),safeModeActive:isSafeModeActive(root),findings,financialCommitments,
+  return registerReport(root,{timestamp:new Date().toISOString(),...getRepairStatus(root),findings,financialCommitments,
     summary:{totalFindings:findings.length,critical:findings.filter(item=>item.severity==='critical').length,warning:findings.filter(item=>item.severity==='warning').length,info:findings.filter(item=>item.severity==='info').length,...calculateScores(findings),...receiptTotals(financialCommitments)},
-    limitations:['Heuristic DOM checks are not a full accessibility audit or a guarantee of safety.','Totals include identifiable current fixed USD charges only. Unknown, annual, usage-based, conditional, future, and non-USD amounts remain listed separately.','Closed shadow roots, cross-origin frames, pseudo-elements, background images, and unavailable content require manual review.','Synthetic events may not update every site framework. Confirm the host page totals before proceeding.']});
+    limitations:['Heuristic DOM checks are not a full accessibility audit or a guarantee of safety.','Totals include identifiable current fixed USD charges only. Unknown, annual, per-unit, conditional, future, credits, refunds, and non-USD amounts remain listed separately. A bare dollar symbol assumes USD.','Closed shadow roots, cross-origin frames, pseudo-elements, background images, and unavailable content require manual review.','Synthetic events may not update every site framework. Confirm the host page totals before proceeding.']});
 }

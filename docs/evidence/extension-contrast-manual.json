@@ -1,0 +1,27 @@
+{
+  "status": "HISTORICAL_SUPERSEDED",
+  "designRevision": "Earlier dark HUD with cyan CTA and decorative sweep; not the current Warm Civic Daylight panel.",
+  "supersededBy": "extension-browser-receipt.json",
+  "supersedingEvidenceCheckedAt": "2026-11-27T18:07:13.843Z",
+  "scope": "Historical manual resolution of two dark-revision axe incomplete checks. The passed flags below refer to that earlier AA text check; the 6.13:1 result does not meet the current 7:1 requirement.",
+  "currentVerification": "The Warm Civic Daylight initial instructions, expanded review disclosures, and active panel each pass the custom 7:1 normal-and-large-text check with zero violations and zero incomplete checks. See supersededBy for the current measured evidence.",
+  "reason": "axe cannot resolve the decorative white sweep pseudo-element. Base CTA is the darkest background; its white sweep only increases contrast with these dark text colors. Disabled controls are excluded from WCAG contrast requirements.",
+  "calculation": "WCAG sRGB relative luminance",
+  "checks": [
+    {
+      "element": ".safe-button > span",
+      "foreground": "#07131e",
+      "background": "#38bdf8",
+      "ratio": 8.75,
+      "passed": true
+    },
+    {
+      "element": ".safe-button small",
+      "foreground": "#12334a",
+      "background": "#38bdf8",
+      "ratio": 6.13,
+      "passed": true
+    }
+  ],
+  "contrastHarnessCorrection": "Warm runtime receipts before 2026-11-27T18:07:13.843Z used an ignored rules.any.options override and did not establish 7:1. The current receipt uses top-level checks options and records actual expectedContrastRatio 7:1. Normal and large #666666-on-white controls both fail at 5.74:1; the high-contrast control passes. Earlier 7:1 claims are superseded."
+}

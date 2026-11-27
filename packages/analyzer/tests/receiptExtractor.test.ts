@@ -45,4 +45,18 @@ describe('financial receipts',()=>{
     expect(report.summary.totalImmediateDue).toBe(1200);
     expect(report.financialCommitments[1].cadence).toBe('unknown');
   });
+  it('keeps explicit dollar currencies and unknown prefixes outside USD totals',()=>{
+    document.body.innerHTML='<p>Plan CAD $39/month</p><p>Plan AU$20/month</p><p>Plan NZ$30/month</p><p>Plan HK$100/month</p><p>Plan USD 5/month</p>';
+    const report=scanDocument(document);
+    expect(report.financialCommitments.map(item=>item.currency)).toEqual(['CAD','AUD','NZD','unknown','USD']);
+    expect(report.summary.totalRecurringMonthly).toBe(5);
+    expect(report.financialCommitments[0].amountText).toBe('CAD $39/month');
+  });
+  it('preserves a signed credit but does not confuse a credit-card payment method with a credit',()=>{
+    document.body.innerHTML='<p>Pay by credit card. Setup fee $40</p><p>Account credit -$25</p>';
+    const report=scanDocument(document);
+    expect(report.summary.totalImmediateDue).toBe(40);
+    expect(report.financialCommitments[0].amountKind).toBe('charge');
+    expect(report.financialCommitments[1]).toMatchObject({numericValue:-25,amountKind:'credit',includedInTotals:false});
+  });
 });

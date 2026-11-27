@@ -59,7 +59,7 @@ describe('safe repair and rollback',()=>{
     expect(root.querySelector('div')!.style.opacity).toBe('0.5');
   });
   it('repairs styles, labels, focus and choices then restores exact attributes and state',()=>{
-    document.body.innerHTML='<section id="root"><label><input type="checkbox" checked>Membership $20/mo</label><p style="color:#9ca3af;font-size:9px">Facility fee $149.00</p><input placeholder="Patient DOB"><div data-clickable tabindex="5">Submit</div></section>';
+    document.body.innerHTML='<section id="root"><label><input type="checkbox" checked>Membership $20/mo</label><p style="color:#9ca3af;font-size:9px">Facility fee $149.00</p><p style="color:#9ca3af;font-size:24px">Review the details</p><input placeholder="Patient DOB"><div data-clickable tabindex="5">Submit</div></section>';
     const root=document.getElementById('root')!;
     const checkbox=root.querySelector('input')!;
     const events:string[]=[];
@@ -68,6 +68,17 @@ describe('safe repair and rollback',()=>{
     const report=scanDocument(root);
     const initial=Array.from(root.querySelectorAll('*')).map(element=>({element,style:element.getAttribute('style'),label:element.getAttribute('aria-label'),role:element.getAttribute('role'),tab:element.getAttribute('tabindex')}));
     const snapshot=applySafeMode(root,report);
+    const repairedText=root.querySelectorAll('p');
+    expect(repairedText[0].style.fontSize).toBe('16px');
+    expect(repairedText[1].style.fontSize).toBe('24px');
+    const badges=root.querySelectorAll<HTMLElement>('[data-clearview-badge]');
+    expect(badges.length).toBeGreaterThan(0);
+    for(const badge of badges){
+      expect(badge.style.fontSize).toBe('14px');
+      expect(badge.style.color).toBe('rgb(6, 95, 70)');
+      expect(badge.style.backgroundColor).toBe('rgb(236, 253, 245)');
+      expect(badge.style.borderColor).toBe('rgb(110, 231, 183)');
+    }
     expect(checkbox.checked).toBe(false);
     expect(events).toEqual(['input','change']);
     expect(root.querySelector('[placeholder]')?.getAttribute('aria-label')).toBe('Patient DOB');
@@ -108,7 +119,7 @@ describe('safe repair and rollback',()=>{
     expect(document.querySelector('button')!.hasAttribute('aria-label')).toBe(false);
     revertSafeMode(document,snapshot);
   });
-  it('highlights a finding and restores previous outline after two seconds',()=>{
+  it('highlights a finding and restores previous outline after 1.5 seconds',()=>{
     vi.useFakeTimers();
     document.body.innerHTML='<p style="outline:1px solid blue">Fee $10</p>';
     const p=document.querySelector('p')!;
@@ -116,7 +127,7 @@ describe('safe repair and rollback',()=>{
     highlightElement(document,id);
     expect(p.style.outline).toContain('3px');
     highlightElement(document,id);
-    vi.advanceTimersByTime(2100);
+    vi.advanceTimersByTime(1500);
     expect(p.style.outline).toBe('1px solid blue');
     highlightElement(document,'missing');
     vi.useRealTimers();
@@ -134,7 +145,7 @@ describe('safe repair and rollback',()=>{
     expect(input.getAttribute('style')).toBeNull();
     vi.useRealTimers();
   });
-  it('pulses the outline for two seconds and cancels animation during rollback',()=>{
+  it('pulses the outline for 1.5 seconds and cancels animation during rollback',()=>{
     vi.useFakeTimers();
     document.body.innerHTML='<input placeholder="DOB">';
     const input=document.querySelector('input')!;
@@ -145,10 +156,10 @@ describe('safe repair and rollback',()=>{
     const id=report.findings[0].clearviewId;
     highlightElement(document,id);
     expect(animate).toHaveBeenCalledWith(
-      [{outlineOffset:'4px'},{outlineOffset:'8px'},{outlineOffset:'4px'}],
-      {duration:1000,iterations:2,easing:'ease-in-out'},
+      [{outlineOffset:'4px',boxShadow:'0 0 0 0 transparent'},{outlineOffset:'8px',boxShadow:'0 0 0 2px #090D16, 0 0 0 6px #38BDF8'},{outlineOffset:'4px',boxShadow:'0 0 0 0 transparent'}],
+      {duration:750,iterations:2,easing:'ease-in-out'},
     );
-    vi.advanceTimersByTime(2000);
+    vi.advanceTimersByTime(1500);
     expect(cancel).toHaveBeenCalledTimes(1);
     expect(input.getAttribute('style')).toBeNull();
     const snapshot=applySafeMode(document,report);

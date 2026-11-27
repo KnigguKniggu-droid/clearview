@@ -1,0 +1,126 @@
+{
+  "theme": "Warm Civic Daylight",
+  "textContrastThreshold": 7,
+  "checkedAt": "2026-11-27T18:06:09.511Z",
+  "url": "http://127.0.0.1:4173",
+  "screenshots": [
+    {
+      "path": "docs/evidence/daylight-workspace-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0,
+      "reducedMotion": true
+    },
+    {
+      "path": "docs/evidence/daylight-active-1440.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "fullPage": false,
+      "scrollY": 0,
+      "reducedMotion": true
+    },
+    {
+      "path": "docs/evidence/daylight-workspace-375.png",
+      "viewport": {
+        "width": 375,
+        "height": 900
+      },
+      "fullPage": false,
+      "scrollY": 18,
+      "reducedMotion": true
+    },
+    {
+      "path": "docs/evidence/daylight-review-375.png",
+      "viewport": {
+        "width": 375,
+        "height": 900
+      },
+      "fullPage": false,
+      "scrollY": 18,
+      "reducedMotion": true
+    }
+  ],
+  "checks": [
+    {
+      "width": 1440,
+      "view": "workspace",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "view": "repair-review",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "view": "saved-report",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 1440,
+      "view": "installation",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 375,
+      "view": "workspace",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 375,
+      "view": "repair-review",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 375,
+      "view": "saved-report",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 375,
+      "view": "installation",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "view": "workspace",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "view": "repair-review",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "view": "saved-report",
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "width": 768,
+      "view": "installation",
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "assets": [
+    "/assets/index-BmNBwrbf.js",
+    "/assets/index-BDzfqFmG.css"
+  ]
+}

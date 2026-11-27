@@ -25,13 +25,16 @@ export interface FinancialCommitment {
   cadence: BillingCadence;
   isPreselected: boolean;
   isHiddenOrLowContrast: boolean;
-  currency: 'USD' | 'EUR' | 'GBP';
+  currency: 'USD' | 'EUR' | 'GBP' | 'CAD' | 'AUD' | 'NZD' | 'unknown';
+  amountKind: 'charge' | 'credit' | 'refund' | 'unknown';
   includedInTotals: boolean;
   exclusionReason?: string;
 }
 export interface AuditReport {
   timestamp: string;
   safeModeActive: boolean;
+  repairState: 'inactive' | 'active' | 'partial' | 'expired';
+  repairSummary: { applied: number; skipped: number; conflicted: number; nodes: number };
   summary: {
     totalFindings: number; critical: number; warning: number; info: number;
     accessibilityScore: number; trustScore: number; overallScore: number;
@@ -51,4 +54,21 @@ export interface ElementRepairRecord {
   originalStyleAttribute?: string | null;
   addedKeyListener?: boolean;
 }
-export interface RepairSnapshot { appliedAt: number; records: ElementRepairRecord[] }
+export interface RepairOptions { findingIds?: readonly string[] }
+export interface RepairOutcome {
+  findingId: string;
+  clearviewId: string;
+  status: 'applied' | 'skipped' | 'conflict';
+  reason?: string;
+}
+export interface RevertOutcome {
+  clearviewId: string;
+  property: string;
+  status: 'restored' | 'conflict' | 'detached';
+}
+export interface RepairSnapshot {
+  appliedAt: number;
+  records: ElementRepairRecord[];
+  outcomes: RepairOutcome[];
+  revertOutcomes: RevertOutcome[];
+}

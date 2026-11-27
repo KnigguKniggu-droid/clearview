@@ -3,11 +3,31 @@ import type { AuditFinding, AuditReport, AuditRoot, FindingCategory, FindingSeve
 const ids = new WeakMap<Element, string>();
 const counters = new WeakMap<Document, number>();
 const reportRoots = new WeakMap<AuditReport, AuditRoot>();
+const reviewedTargets = new WeakMap<AuditReport, Map<string, { element: HTMLElement; signature: string }>>();
+function targetSignature(element: HTMLElement): string {
+  const checkbox = element.tagName === 'INPUT' && (element as HTMLInputElement).type === 'checkbox';
+  return JSON.stringify({
+    tag: element.tagName,
+    attributes: ['type', 'required', 'disabled', 'aria-disabled', 'aria-label', 'role', 'tabindex', 'style', 'placeholder', 'name'].map(name => element.getAttribute(name)),
+    checked: checkbox ? (element as HTMLInputElement).checked : undefined,
+    visible: isVisible(element),
+    text: checkbox ? labelText(element) || visibleText(element.parentElement?.parentElement ?? element.parentElement ?? element) : visibleText(element),
+  });
+}
 export function registerReport(root: AuditRoot, report: AuditReport): AuditReport {
   reportRoots.set(report, root);
+  reviewedTargets.set(report, new Map(report.findings.map(finding => {
+    const element = findElement(root, finding.clearviewId)!;
+    return [finding.id, { element, signature: targetSignature(element) }];
+  })));
   return report;
 }
 export const isReportForRoot = (root: AuditRoot, report: AuditReport): boolean => reportRoots.get(report) === root;
+export const reviewedFindingIds = (report: AuditReport): string[] => [...(reviewedTargets.get(report)?.keys() ?? [])];
+export function isFindingCurrent(root: AuditRoot, report: AuditReport, finding: AuditFinding): boolean {
+  const target = reviewedTargets.get(report)?.get(finding.id);
+  return Boolean(target && target.element.isConnected && findElement(root, finding.clearviewId) === target.element && target.signature === targetSignature(target.element));
+}
 export const documentOf = (root: AuditRoot): Document => root.nodeType === 9 ? root as Document : root.ownerDocument!;
 export const elements = (root: AuditRoot): HTMLElement[] => [
   ...(root.nodeType === 1 ? [root as HTMLElement] : []),

@@ -44,7 +44,7 @@ describe('extension boundary', () => {
     expect(scan.report.summary.totalRecurringMonthly).toBe(29.99);
     const inputEvents = vi.fn();
     document.body.addEventListener('input', inputEvents, { once: true });
-    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken });
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: scan.report.findings.filter(item => item.isAutoRepairable).map(item => item.id) });
     expect(apply.ok).toBe(true);
     if (!apply.ok) throw new Error(apply.error);
     expect(apply.report.safeModeActive).toBe(true);
@@ -62,7 +62,7 @@ describe('extension boundary', () => {
   });
 
   it('rejects stale document tokens before mutation', async () => {
-    const result = await request({ source: 'clearview-panel', action: 'apply', documentToken: 'old-document' });
+    const result = await request({ source: 'clearview-panel', action: 'apply', documentToken: 'old-document', reportId: 'old-report', findingIds: [] });
     expect(result.ok).toBe(false);
     expect(document.querySelector<HTMLInputElement>('input[type=checkbox]')!.checked).toBe(true);
     expect(document.querySelectorAll('[data-clearview-badge]')).toHaveLength(0);
@@ -92,4 +92,109 @@ describe('extension boundary', () => {
     expect(result).toEqual({ ok: false, error: 'That source element was removed from the page. Scan again.' });
     expect(replacement.style.outline).toBe('');
   });
+
+  it('preserves intended add-ons when only accessibility changes are selected', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    const findingIds = scan.report.findings.filter(item => item.isAutoRepairable && item.ruleId !== 'DP-001').map(item => item.id);
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds });
+    if (!apply.ok) throw new Error(apply.error);
+    expect(document.querySelector<HTMLInputElement>('input[type=checkbox]')!.checked).toBe(true);
+    expect(apply.report.summary.totalRecurringMonthly).toBe(29.99);
+    expect(document.querySelector('input[placeholder]')?.getAttribute('aria-label')).toBe('Account number');
+    expect(apply.operation?.action).toBe('apply');
+  });
+
+  it('rejects unreviewed page changes instead of silently expanding the repair set', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    document.body.insertAdjacentHTML('beforeend', '<label><input type="checkbox" checked data-new-option> Monthly membership $99/mo</label>');
+    const result = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: scan.report.findings.filter(item => item.isAutoRepairable).map(item => item.id) });
+    expect(result.ok).toBe(false);
+    if (result.ok) throw new Error('Expected stale report rejection');
+    expect(result.code).toBe('STALE_REPORT');
+    expect(document.querySelector<HTMLInputElement>('[data-new-option]')!.checked).toBe(true);
+    expect(document.querySelector('input[placeholder]')?.hasAttribute('aria-label')).toBe(false);
+  });
+
+  it('rejects an earlier review id after an explicit rescan', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    await request({ source: 'clearview-panel', action: 'scan' });
+    const result = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: [] });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.code).toBe('STALE_REPORT');
+  });
+
+  it('keeps Locate separate from a report refresh', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    const result = await request({ source: 'clearview-panel', action: 'locate', documentToken: scan.documentToken, clearviewId: scan.report.findings[0].clearviewId });
+    if (!result.ok) throw new Error(result.error);
+    expect(result.reportId).toBe(scan.reportId);
+    expect(result.report).toBe(scan.report);
+  });
+
+  it('expires detached repairs and permits a new reviewed change set', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: scan.report.findings.filter(item => item.isAutoRepairable).map(item => item.id) });
+    document.body.innerHTML = '<input placeholder="New account field">';
+    const current = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!current.ok) throw new Error(current.error);
+    expect(current.report.safeModeActive).toBe(false);
+    expect(current.report.repairState).toBe('expired');
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: current.documentToken, reportId: current.reportId, findingIds: current.report.findings.filter(item => item.isAutoRepairable).map(item => item.id) });
+    if (!apply.ok) throw new Error(apply.error);
+    expect(document.querySelector('input')?.getAttribute('aria-label')).toBe('New account field');
+    expect(apply.report.repairState).toBe('active');
+  });
+
+
+  it('links selected monthly extras to their actual checkbox row and verifies only applied removals', async () => {
+    document.body.insertAdjacentHTML('afterbegin', '<p>Base plan $55/mo</p>');
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    expect(scan.selectedMonthlyOptionIds).toHaveLength(1);
+    const extra = scan.report.financialCommitments.find(item => item.id === scan.selectedMonthlyOptionIds[0])!;
+    expect(extra.numericValue).toBe(29.99);
+    const selected = scan.report.findings.filter(item => item.ruleId === 'DP-001').map(item => item.id);
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: selected });
+    if (!apply.ok) throw new Error(apply.error);
+    expect(apply.selectedMonthlyOptionIds).toEqual([]);
+    expect(apply.removedMonthlyOptionIds).toEqual([extra.id]);
+    expect(apply.report.summary.totalRecurringMonthly).toBe(55);
+    const revert = await request({ source: 'clearview-panel', action: 'revert', documentToken: apply.documentToken });
+    if (!revert.ok) throw new Error(revert.error);
+    expect(revert.removedMonthlyOptionIds).toEqual([]);
+    expect(revert.selectedMonthlyOptionIds).toEqual([extra.id]);
+  });
+
+  it('does not report removal when the host rejects the checkbox change', async () => {
+    const checkbox = document.querySelector<HTMLInputElement>('input[type=checkbox]')!;
+    checkbox.addEventListener('change', () => { checkbox.checked = true; });
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: scan.report.findings.filter(item => item.ruleId === 'DP-001').map(item => item.id) });
+    if (!apply.ok) throw new Error(apply.error);
+    expect(checkbox.checked).toBe(true);
+    expect(apply.removedMonthlyOptionIds).toEqual([]);
+  });
+
+  it('drops removal proof when the original price source changes after applying', async () => {
+    const scan = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!scan.ok) throw new Error(scan.error);
+    const apply = await request({ source: 'clearview-panel', action: 'apply', documentToken: scan.documentToken, reportId: scan.reportId, findingIds: scan.report.findings.filter(item => item.ruleId === 'DP-001').map(item => item.id) });
+    if (!apply.ok) throw new Error(apply.error);
+    expect(apply.removedMonthlyOptionIds).toHaveLength(1);
+    const label = document.querySelector('label')!;
+    label.lastChild!.textContent = ' Monthly membership $59.99/mo';
+    const located = await request({ source: 'clearview-panel', action: 'locate', documentToken: apply.documentToken, clearviewId: apply.report.financialCommitments[0].clearviewId });
+    if (!located.ok) throw new Error(located.error);
+    expect(located.removedMonthlyOptionIds).toEqual([]);
+    const current = await request({ source: 'clearview-panel', action: 'scan' });
+    if (!current.ok) throw new Error(current.error);
+    expect(current.removedMonthlyOptionIds).toEqual([]);
+  });
+
 });

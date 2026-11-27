@@ -14,12 +14,17 @@ export function checkboxContext(element: HTMLInputElement): string {
   const grandparent=parent?.parentElement;
   return grandparent && grandparent.querySelectorAll('input[type="checkbox"]').length===1 ? visibleText(grandparent) : visibleText(parent ?? element);
 }
+export function canClearCheckbox(element: HTMLInputElement): boolean {
+  return element.checked && !element.required && !element.disabled && element.getAttribute('aria-disabled') !== 'true'
+    && !/\b(?:agree|consent|terms|privacy|mandatory|required)\b/i.test(checkboxContext(element));
+}
 export function auditDarkPatterns(root: AuditRoot): AuditFinding[] {
   const findings: AuditFinding[]=[];
   for (const element of elements(root).filter(isVisible)) {
     const text=ownText(element);
     if (element.tagName==='INPUT' && (element as HTMLInputElement).type==='checkbox' && (element as HTMLInputElement).checked && addOn.test(checkboxContext(element as HTMLInputElement))) {
-      findings.push(finding(element,'DP-001','dark-pattern','critical','Optional commitment is already selected','This add-on or recurring option is checked. Confirm that you intended to select it.','Safe Mode unchecks the option and notifies the page.',true,checkboxContext(element as HTMLInputElement)));
+      const repairable = canClearCheckbox(element as HTMLInputElement);
+      findings.push(finding(element,'DP-001','dark-pattern',repairable ? 'critical' : 'info',repairable ? 'Recurring or add-on option is selected' : 'Selected commitment needs manual review','This choice is checked. A scan cannot establish who selected it or whether it is optional.',repairable ? 'You can choose to clear this option. Confirm the page accepts the change.' : 'This appears required, disabled, or related to consent. Review it on the original page.',repairable,checkboxContext(element as HTMLInputElement)));
     }
     if (text && disclosure.test(text) && isLowVisibility(element)) {
       findings.push(finding(element,'DP-002','hidden-fee','critical','Financial terms are hard to see','A price or billing condition appears in small, faint, or low-contrast text.','Safe Mode highlights these terms. Check whether they apply to you.',true,text));
