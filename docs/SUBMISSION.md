@@ -19,18 +19,18 @@ The rules page says winners will be announced on November 21, 2026. That date pr
 | Analyzer | Root `npm test` output and exit code | 33 tests pass; coverage thresholds pass |
 | Types | Root `npm run typecheck` output and exit code | All workspaces pass |
 | Production build | Root `npm run build` output and exit code | All workspaces pass |
-| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 10 Chromium tests pass |
+| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 11 Chromium tests passed on the previous runtime; final redesign is undergoing verification |
 | Extension | Load unpacked; scan; locate; repair; revert; tab navigation; restricted-page error | Six message tests and real Chromium runtime flow pass |
 | Privacy | Inspect source, bundles, and network behavior | Source review and browser no-submission/no-external-request assertions pass |
 | Video | Real product proof; runtime; readable captions; decode and audio checks | Pending production and verification |
 | ZIPs | Archive inventory; expected entry points; no secrets or dependencies folder | Extension and source ZIPs pass CRC and inventory checks; source is regenerated after final documentation updates |
-| Public source | Approved repository contents and destination | Not published |
-| Public demo | Approved Vercel project and deployed smoke test | Not published |
+| Public source | Approved repository contents and destination | Awaiting final revision verification |
+| Public demo | Approved Vercel project and deployed smoke test | https://clearview-brown.vercel.app; previous runtime deployed and checked |
 | Submission | Owner eligibility, team details, reviewed writeup, valid links | Not submitted |
 
 ## Approval boundary
 
-Local source, tests, builds, documentation, and packaging are authorized by the project request. Public repository creation, deployment, video upload, and Devpost submission require approval of the concrete release and destination. A successful local build is not a published deliverable.
+The owner explicitly approved the public repository KnigguKniggu-droid/clearview and Vercel sandbox publication. The owner also approved the GitHub CLI workflow scope needed to publish CI. These approvals persist. Video upload and Devpost submission still require approval of their concrete destination and contents.
 
 ## Evidence record
 

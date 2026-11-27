@@ -88,13 +88,36 @@ test('reduced motion keeps receipt changes and source links usable', async ({ pa
   await expect(page.getByTestId('receipt-monthly')).toHaveText('$29.99');
 });
 
+test('mobile receipt jump focuses the review, repairs the page, and returns to a source', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('.intro-enter').click();
+  await expect(page.locator('#live-audit')).toBeFocused();
+  await page.getByRole('link', { name: 'Receipt & Safe Mode' }).click();
+  await expect(page.getByTestId('guard-panel')).toBeFocused();
+  await expect(page.getByTestId('receipt-due')).toBeInViewport();
+  await expect(page.getByTestId('safe-toggle')).toBeInViewport();
+  await page.getByTestId('safe-toggle').click();
+  await expect(page.getByTestId('receipt-monthly')).toHaveText('$0.00');
+  const source = page.locator('.receipt-lines button').nth(1);
+  const sourceId = await source.getAttribute('data-cv-source');
+  expect(sourceId).toBeTruthy();
+  await source.click();
+  const target = page.getByTestId('portal-root').locator(`[data-clearview-id="${sourceId}"]`);
+  await expect(target).toBeInViewport();
+  await expect(target).toHaveCSS('outline-style', 'solid');
+  await expect(page.getByTestId('facility-fee')).toContainText('$149.00');
+});
+
 for (const width of [375, 768, 1440]) {
-  test(`layout fits ${width}px and inspector has no automated accessibility violations`, async ({ page }) => {
+  test(`layout fits ${width}px and app chrome has no automated accessibility violations`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
     await expect(page.getByTestId('safe-toggle')).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth);
     expect(overflow).toBe(false);
-    const audit = await new AxeBuilder({ page }).include('[data-testid="guard-panel"]').analyze();
+    const audit = await new AxeBuilder({ page })
+      .include('.topbar').include('.intro-experience').include('.workspace-heading')
+      .include('.scenario-bar').include('.workspace-toolbar').include('[data-testid="guard-panel"]')
+      .include('.page-footer').analyze();
     expect(audit.violations).toEqual([]);
     await page.screenshot({ path: `test-results/clearview-${width}.png`, fullPage: true });
   });

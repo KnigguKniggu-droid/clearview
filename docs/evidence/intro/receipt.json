@@ -1,0 +1,290 @@
+{
+  "browser": "159.0.8154.6",
+  "checks": [
+    {
+      "name": "Desktop opening",
+      "viewport": 1440,
+      "content": 1440,
+      "scene": {
+        "x": 0,
+        "y": 72,
+        "w": 1440,
+        "h": 928
+      },
+      "headline": {
+        "x": 72,
+        "y": 132,
+        "w": 650,
+        "h": 149.8125
+      },
+      "cta": {
+        "x": 72,
+        "y": 398.5,
+        "w": 205.859375,
+        "h": 54
+      },
+      "font": "\"Manrope Display\", sans-serif",
+      "art": [
+        {
+          "source": "/art/intro-background.webp",
+          "naturalWidth": 1600,
+          "box": {
+            "x": 0,
+            "y": 32,
+            "w": 1440,
+            "h": 1008
+          },
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        {
+          "source": "/art/intro-receipt.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 617.348876953125,
+            "y": 193.677001953125,
+            "w": 666.08349609375,
+            "h": 666.08349609375
+          },
+          "transform": "matrix(0.978148, -0.207912, 0.207912, 0.978148, -280.797, -280.797)"
+        },
+        {
+          "source": "/art/intro-frame.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 737.9902954101562,
+            "y": 208.39651489257812,
+            "w": 655.2069702148438,
+            "h": 655.2069091796875
+          },
+          "transform": "matrix(0.996195, 0.0871557, -0.0871557, 0.996195, -302.398, -302.398)"
+        }
+      ],
+      "signature": "paper:0,0;frame:0,0"
+    },
+    {
+      "name": "Distinct scroll and pointer states",
+      "midpoint": "paper:-12,-32;frame:-47,12",
+      "left": "paper:-20,-40;frame:-65,-2",
+      "right": "paper:-5,-30;frame:-30,15",
+      "end": "paper:-17,-62;frame:-77,27",
+      "travel": 220
+    },
+    {
+      "name": "Live audit entry",
+      "hash": "#live-audit",
+      "focus": "live-audit",
+      "top": 24
+    },
+    {
+      "name": "Mobile 390",
+      "viewport": 390,
+      "content": 390,
+      "scene": {
+        "x": 0,
+        "y": 64,
+        "w": 390,
+        "h": 843.34375
+      },
+      "headline": {
+        "x": 24,
+        "y": 100,
+        "w": 342,
+        "h": 88.1875
+      },
+      "cta": {
+        "x": 24,
+        "y": 277.6875,
+        "w": 191.9375,
+        "h": 50
+      },
+      "font": "\"Manrope Display\", sans-serif",
+      "art": [
+        {
+          "source": "/art/intro-background.webp",
+          "naturalWidth": 1600,
+          "box": {
+            "x": 0,
+            "y": 24,
+            "w": 390,
+            "h": 923.34375
+          },
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        {
+          "source": "/art/intro-receipt.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": -12.704705238342285,
+            "y": 381.1702880859375,
+            "w": 360.784423828125,
+            "h": 360.784423828125
+          },
+          "transform": "matrix(0.978148, -0.207912, 0.207912, 0.978148, -152.094, -152.094)"
+        },
+        {
+          "source": "/art/intro-frame.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 81.39878845214844,
+            "y": 386.2113037109375,
+            "w": 367.577392578125,
+            "h": 367.577392578125
+          },
+          "transform": "matrix(0.996195, 0.0871557, -0.0871557, 0.996195, -169.648, -169.648)"
+        }
+      ],
+      "signature": "paper:0,0;frame:0,0"
+    },
+    {
+      "name": "Mobile 360",
+      "viewport": 360,
+      "content": 360,
+      "scene": {
+        "x": 0,
+        "y": 64,
+        "w": 360,
+        "h": 820.90625
+      },
+      "headline": {
+        "x": 20,
+        "y": 92,
+        "w": 320,
+        "h": 84
+      },
+      "cta": {
+        "x": 20,
+        "y": 290.25,
+        "w": 191.9375,
+        "h": 50
+      },
+      "font": "\"Manrope Display\", sans-serif",
+      "art": [
+        {
+          "source": "/art/intro-background.webp",
+          "naturalWidth": 1600,
+          "box": {
+            "x": 0,
+            "y": 24,
+            "w": 360,
+            "h": 900.90625
+          },
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        {
+          "source": "/art/intro-receipt.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": -11.72399616241455,
+            "y": 381.8072509765625,
+            "w": 333.041748046875,
+            "h": 333.041748046875
+          },
+          "transform": "matrix(0.978148, -0.207912, 0.207912, 0.978148, -140.398, -140.398)"
+        },
+        {
+          "source": "/art/intro-frame.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 75.15097045898438,
+            "y": 386.8853454589844,
+            "w": 339.29180908203125,
+            "h": 339.2918395996094
+          },
+          "transform": "matrix(0.996195, 0.0871557, -0.0871557, 0.996195, -156.594, -156.594)"
+        }
+      ],
+      "signature": "paper:0,0;frame:0,0"
+    },
+    {
+      "name": "Desktop768height",
+      "viewport": 1440,
+      "content": 1440,
+      "scene": {
+        "x": 0,
+        "y": 72,
+        "w": 1440,
+        "h": 696
+      },
+      "headline": {
+        "x": 72,
+        "y": 118.078125,
+        "w": 650,
+        "h": 149.8125
+      },
+      "cta": {
+        "x": 72,
+        "y": 384.578125,
+        "w": 205.859375,
+        "h": 54
+      },
+      "font": "\"Manrope Display\", sans-serif",
+      "art": [
+        {
+          "source": "/art/intro-background.webp",
+          "naturalWidth": 1600,
+          "box": {
+            "x": 0,
+            "y": 32,
+            "w": 1440,
+            "h": 776
+          },
+          "transform": "matrix(1, 0, 0, 1, 0, 0)"
+        },
+        {
+          "source": "/art/intro-receipt.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 620.7420654296875,
+            "y": 95.95318603515625,
+            "w": 659.297119140625,
+            "h": 634.1561279296875
+          },
+          "transform": "matrix(0.978148, -0.207912, 0.207912, 0.978148, -280.797, -264.477)"
+        },
+        {
+          "source": "/art/intro-frame.webp",
+          "naturalWidth": 768,
+          "box": {
+            "x": 739.475341796875,
+            "y": 109.37074279785156,
+            "w": 652.23681640625,
+            "h": 621.258544921875
+          },
+          "transform": "matrix(0.996195, 0.0871557, -0.0871557, 0.996195, -302.398, -285.359)"
+        }
+      ],
+      "signature": "paper:0,0;frame:0,0"
+    },
+    {
+      "name": "Reduced motion",
+      "before": "static-alignment",
+      "after": "static-alignment"
+    }
+  ],
+  "errors": [],
+  "screenshots": [
+    "desktop-opening.webp",
+    "desktop-midpoint.webp",
+    "desktop-resolve.webp",
+    "desktop-pointer-left.webp",
+    "desktop-pointer-right.webp",
+    "desktop-768-opening.webp",
+    "mobile-390-opening.webp",
+    "mobile-390-art.webp",
+    "mobile-360-opening.webp",
+    "mobile-360-art.webp",
+    "reduced-opening.webp",
+    "reduced-scroll.webp"
+  ],
+  "status": "PASS",
+  "pixelCheck": {
+    "pair": [
+      "desktop-pointer-left.webp",
+      "desktop-pointer-right.webp"
+    ],
+    "changedPixelsAboveLuma3": 141465,
+    "totalPixels": 1440000,
+    "changedPercent": 9.82,
+    "note": "Real screenshot pixels changed between pointer positions; this is not a frame-rate measurement."
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-27T05:33:59.969Z",
+  "checkedAt": "2026-11-27T06:07:12.546Z",
   "status": "PASS",
   "browser": "Chrome/159.0.8154.6",
   "method": "Real unpacked Chromium extension; CDP Extensions.triggerAction invokes the toolbar action. No host permission changes.",
@@ -16,6 +16,21 @@
         "$29.99"
       ],
       "findings": "10"
+    },
+    {
+      "name": "Sidepanel 320px has no horizontal overflow",
+      "viewport": 320,
+      "content": 320
+    },
+    {
+      "name": "Sidepanel 420px has no horizontal overflow",
+      "viewport": 420,
+      "content": 420
+    },
+    {
+      "name": "Reduced motion disables amount settlement",
+      "reduced": true,
+      "animation": "none"
     },
     {
       "name": "Local safe repair and live receipt",
@@ -74,6 +89,9 @@
     }
   ],
   "screenshots": [
+    "docs/evidence/extension-panel-320.png",
+    "docs/evidence/extension-panel-420.png",
+    "docs/evidence/extension-panel-reduced-motion.png",
     "docs/evidence/extension-medical-panel-before.png",
     "docs/evidence/extension-medical-panel-after.png",
     "docs/evidence/extension-w3c-panel-before.png",

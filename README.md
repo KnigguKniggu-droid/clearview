@@ -4,7 +4,9 @@ ClearView inspects a page for low-visibility charges, selected recurring add-ons
 
 The project contains a browser sandbox and a Chrome side-panel extension. Both use the same deterministic TypeScript analyzer. Runtime analysis requires no account, paid LLM API, or remote scraping service.
 
-**Release status:** The local sandbox and extension production builds pass their automated checks. Browser integration and video release evidence are recorded in `docs/VERIFICATION.md` and `CURRENT_STATE.md`. Public demo, repository, and video publication await owner approval.
+**Live sandbox:** [clearview-brown.vercel.app](https://clearview-brown.vercel.app).
+
+**Source:** [KnigguKniggu-droid/clearview](https://github.com/KnigguKniggu-droid/clearview). Release evidence and remaining checks are recorded in `docs/VERIFICATION.md` and `CURRENT_STATE.md`. The demo video is being produced separately; no Devpost submission is implied.
 
 ## Run locally
 

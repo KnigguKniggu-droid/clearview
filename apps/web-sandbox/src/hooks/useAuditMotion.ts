@@ -20,7 +20,7 @@ export function useAuditMotion(report: AuditReport | null) {
       source.dataset.cvSelected = 'true';
       clearFlight();
       // A source marker is sufficient on phones and for reduced motion.
-      if (reduced.matches || window.innerWidth < 900) return;
+      if (reduced.matches || window.innerWidth < 900 || event.detail === 0) return;
       const target = document.querySelector<HTMLElement>(`[data-testid="portal-root"] [data-clearview-id="${id}"]`);
       if (!target) return;
       const from = source.getBoundingClientRect();
@@ -29,6 +29,11 @@ export function useAuditMotion(report: AuditReport | null) {
       if (!onScreen(from) || !onScreen(to)) return;
       const dot = document.createElement('span');
       dot.className = 'cv-evidence-trace';
+      const citation = source.dataset.cvCitation;
+      if (citation && /^\d{1,2}$/.test(citation)) {
+        dot.textContent = citation.padStart(2, '0');
+        dot.classList.add('cv-evidence-reference');
+      }
       dot.setAttribute('aria-hidden', 'true');
       dot.setAttribute('data-clearview-ignore', '');
       dot.style.left = `${from.left + from.width / 2}px`;

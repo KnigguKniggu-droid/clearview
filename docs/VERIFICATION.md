@@ -21,7 +21,7 @@ The browser tests verify medical, telecom, and utility totals; selection changes
 
 The final browser interaction check also observed no external HTTP requests and no non-GET submission requests. The demo enrollment control displayed its local result without submitting data. Source review found no runtime fetch, XHR, persistent storage, or remote-analysis client in the app, extension, or analyzer source.
 
-Final integrated `npm run verify` exited 0. An earlier run failed on a lint expression in the new runtime test harness; that expression was fixed and the full command was rerun. Capture uses production build revision `989aaca31f707ac787c28976669f323e89ee8d3e`, tagged `v1.0.0-demo`. Later documentation-only commits do not change that captured application.
+Final integrated `npm run verify` exited 0. An earlier run failed on a lint expression in the new runtime test harness; that expression was fixed and the full command was rerun. Earlier footage from `989aaca31f707ac787c28976669f323e89ee8d3e` is superseded by the second redesign. Final capture awaits the new verified runtime pin.
 
 ## Verified sample arithmetic
 
@@ -47,6 +47,7 @@ The unpacked release ran in Chromium 159.0.8154.6 with its original three permis
 - Navigation discarded the prior report before the next page was scanned.
 - Switching tabs discarded the old report. The new tab required its own toolbar permission grant.
 - Scanning `chrome://version` produced an actionable unsupported-page explanation.
+- The revised receipt-first panel had no horizontal overflow at 320 or 420 pixels. Its reduced-motion view disabled the amount animation. The same release passed the public-page scan, source locate, six local repairs, and exact captured rollback again.
 
 The public [runtime receipt](evidence/extension-browser-receipt.json) records the measured checks. Raw protocol diagnostics stay in ignored local work files. The action was driven through Chrome's extension debug API, not by a human mouse click.
 
@@ -56,6 +57,18 @@ The public [runtime receipt](evidence/extension-browser-receipt.json) records th
 - One ECC Chrome DevTools trace of a warm production-preview reload measured LCP138ms and CLS0.06 with no throttling. Four requests returned304; no console warnings/errors or HTTP errors appeared. INP and real-user metrics remain UNKNOWN. This local lab observation does not predict deployment or mobile-network performance. See evidence/performance-smoke.json.
 - Screen-reader behavior and a complete WCAG audit remain manual review tasks. The sample portals intentionally contain accessibility defects.
 - Demo video render, audio measurements, and final frame review are pending.
-- Production deployment and GitHub publication require final user approval.
+- The owner approved GitHub and Vercel publication. The first redesign is live; the second redesign and final source push remain to be verified.
 
 The project is a working prototype with documented scope limits, not accessibility certification or a financial audit.
+
+## Second redesign verification — 2026-11-27
+
+The integrated second redesign passed `npm run verify` with exit0:33analyzer tests,6extension integration tests, lint, workspace type checks, and production builds. The sandbox produced index-IbuzJyDS.js and index-Qu8qLh7H.css. The browser suite passed12/12 tests. It now verifies the mobile receipt shortcut, focus movement, Safe Mode, return to a cited source, and axe checks across the header, introduction, scenario controls, toolbar, inspector, and footer at375/768/1440px. The deliberately broken sample portal is excluded from the app-chrome accessibility assertion.
+
+Actual screenshots were reviewed at1440px and390px. All seven initially rendered images loaded, receipt labels measured16px, measured controls were44–56px tall, and neither viewport had horizontal overflow or page errors. Long charge labels preserve their complete source text while using a two-line visual limit. The Revert control was measured after settling and was enabled with opacity1.
+
+A new ECC warm local trace measured LCP115ms and CLS0.00 with no throttling. INP and real-user performance remain UNKNOWN. This is a local observation, not a performance promise. See evidence/performance-redesign.json. The older smoke trace above remains historical evidence only.
+
+Final motion correction: a midpoint review found the handoff text clipped through words. Its clipping was removed. The final sandbox assets are index-DEoTv2Bz.js and index-D0OyYlt7.css. Desktop1440x1000 and1440x768, mobile390/360, pointer reversal, and reduced-motion views passed the targeted visual script. The source art planes remain independent; measured pointer views differed in9.82%of pixels. See evidence/intro/receipt.json and its contact sheet.
+
+The aligned navy/cobalt extension passed the real Chromium runtime script again, including320/420px width checks, reduced motion, activeTab permission gating, public-page source location, supported repairs, and rollback with no captured differences. Final runtime evidence is in evidence/extension-browser-receipt.json.

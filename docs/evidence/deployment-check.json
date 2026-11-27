@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-11-27T05:51:16.739427+00:00",
+  "url": "https://clearview-brown.vercel.app",
+  "sourceRevision": "69573d45746457fb9f6f7fd40bacf536cbdea767",
+  "status": "PASS",
+  "exactStaticAssetMatches": [
+    {
+      "path": "favicon.svg",
+      "bytes": 293,
+      "sha256": "4aa7214392b1b884c83ee37e681e15751ac845b80d8eabd065dfca689988eeb3",
+      "status": 200
+    },
+    {
+      "path": "index.html",
+      "bytes": 608,
+      "sha256": "5bc23e19a0d511b6788061ddae75a8d6c023d0a588b0f4f629c2502ca52b33d5",
+      "status": 200
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "bytes": 5436,
+      "sha256": "bed15c807a9a73e2b0d9a4678a6c8fe84fa70f9052648805e0f42a7aa69be0ea",
+      "status": 200
+    },
+    {
+      "path": "assets/index-D-RJ2zHi.css",
+      "bytes": 27323,
+      "sha256": "40d6c6e2eff7043b668a57e2af940ce25812de6d7586ad41f7e48b07b16ee42b",
+      "status": 200
+    },
+    {
+      "path": "assets/index-j4dlz5es.js",
+      "bytes": 271913,
+      "sha256": "cdad003c0e85829a70bea6dcc42a1739c3334e2e58eb9bf94e9fb50f3f25d47e",
+      "status": 200
+    }
+  ],
+  "standaloneRouteStatus": 200,
+  "headers": {
+    "X-Content-Type-Options": "nosniff",
+    "Referrer-Policy": "no-referrer"
+  }
+}

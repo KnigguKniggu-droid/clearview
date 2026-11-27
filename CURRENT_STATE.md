@@ -1,37 +1,31 @@
 # Current state
 
 ## Objective
-Complete ClearView from the user's Downloads/ClearView_Codex_Master_Spec.md with ECC guidance. Deliver the sandbox, extension ZIP, source, documentation, and approximately 2.5-minute demo video. The user emphasized using both demo-video skills and continuing autonomously.
+Deliver the ClearView master spec: working sandbox, Chrome extension, public source, documentation, release archives, and approximately2.5-minute demo. Apply the owner's requested ECC, Limora Unslop, Scrollcraft, Apple Design, Impeccable, and UI UX Pro Max workflows.
 
-## Verified
-- Analyzer first gate passed before UI development. Latest completed run: 30 analyzer tests and 6 extension integration tests.
-- Analyzer coverage: 100% lines/statements/functions; 93.12% branches.
-- Root lint, typecheck, and all production builds passed.
-- Ten Playwright browser tests passed at 375/768/1440 widths, including axe inspector checks and exact portal arithmetic/revert.
-- Real isolated Chromium unpacked extension: permission denied before toolbar invocation; local medical scan, Safe Mode, receipt update, and revert work.
-- Public W3C educational bad-page scan found 47 findings; six supported repairs reduced that to 41. Exact rollback review is still in progress.
-- Production dependency audit has zero reported vulnerabilities. Full audit retains seven development entries from mandated Vitest 2 and coverage/worker dependencies. See docs/DEPENDENCY_REVIEW.md.
+## Verified baseline
+Runtime69573d45746457fb9f6f7fd40bacf536cbdea767 passed39unit/integration tests, lint, workspace types/builds, and11Chromium tests locally and on Vercel. Analyzer coverage97.92%lines/statements,98.21%functions,91.60%branches. Actual extension scan/locate/repair/revert and permission/navigation checks passed. Production dependency audit reports0advisories;7development-tool entries remain under the specified Vitest2 stack.
 
 ## Current work
-- Analyzer worker: final two-second highlight animation with reduced-motion handling; safe evidence fallback that never serializes password/value attributes; public-page rollback issue if reproduced.
-- Extension worker: actual sidepanel/tab/permission/public-site verification and evidence cleanup. Owns apps/extension.
-- Video worker (release_docs): owns ../../work/video. Both demo-video skills read. Local Zira narration and Whisper timing complete. 68 caption cues pass hard limits. Planned runtime157.3s. Deterministic capture benchmark30frames took about3s. Full capture awaits final source pin and browser slot.
-- Lead: owns apps/web-sandbox, root tooling, acceptance tests, integration, review, packaging, and final publication approval.
+Second visual redesign replaces the rejected beige revision. Actual Limora artwork is integrated with navy/cobalt/lime visuals, illustrated scenarios, a clearer cost receipt, and a short layered introduction. Workers are correcting desktop stage height, mobile receipt navigation, and long charge labels. Verification of this revision is in progress; it is not yet the deployed revision.
 
-## Runtime and files
-- App preview: http://127.0.0.1:4173 (Vite dev server; exec session95350).
-- Repository: this folder. Source is not committed or published yet.
-- Intermediate logs: ../../work/logs. Video production: ../../work/video.
-- Browser evidence: docs/evidence; failed/raw extension diagnostics must remain in ignored work/extension.
-- Low-memory host: use one heavy browser/capture/render at a time. Do not stop unrelated processes.
+Limora OAuth completed. Two generations finished using8promotional credits;2remain. No credits purchased. Source asset IDs and processing are recorded in docs/ARTWORK_PROVENANCE.md. PRODUCT.md and DESIGN.md record known facts and the authored direction. Impeccable's absent launcher used its documented reference-reading fallback.
 
-## Next gates
-1. Finish the confirmed analyzer and extension defects. Re-run relevant checks.
-2. Run final npm run verify, analyzer coverage, and browser tests (network assertions were just added).
-3. Commit/tag local source; serve production build for deterministic video capture.
-4. Complete real footage, two critique rounds, encode, measured audio/frame/caption QA, and final video delivery.
-5. Update documents with final evidence. Create extension/source release ZIPs and verify archive contents.
-6. Show local release and request final approval for external publication. GitHub CLI is authenticated and Vercel CLI is available; no external resources created.
+## Publication
+The owner approved public source at https://github.com/KnigguKniggu-droid/clearview and Vercel publication. The repository exists; the first push was rejected for missing workflow scope. The owner approved the scope, OAuth completed on2026-11-27, and the new push remains to be verified.
 
-## Open external items
-No public Vercel demo, GitHub repository, video upload, or Devpost submission exists. The user's global instructions require explicit approval for external publication. Eligibility/team details remain owner-provided. The official rules require age of majority, with no stated parental-consent exception; they do not publish25% weights and have an inconsistent winner date.
+The first redesign is live at https://clearview-brown.vercel.app.11deployedbrowser tests passed. The second redesign will replace it after verification. No video upload or Devpost submission has occurred.
+
+## Video
+Final capture remains on hold until the second redesign has a verified runtime pin. Narration and68timedcaption cues are prepared. Earlier medical footage is intermediate and superseded. No final encode or final review is complete. Video worker owns work/video and final media outputs.
+
+## Remaining work
+1. Finish visual corrections and measured desktop/mobile/reduced-motion checks.
+2. Run full regression gates and commit the verified runtime.
+3. Push approved GitHub source, confirm CI, update Vercel, and verify public files/behavior.
+4. Capture final film, complete two independent critique rounds, encode, and check frames/captions/audio/decode.
+5. Refresh before/after comparison, source/extension archives, manifest, and release documents.
+6. Leave Devpost team/eligibility and video-hosting approval for the owner; do not infer them.
+
+## Operations
+Production preview http://127.0.0.1:4173. Work files belong in the parent workspace work/ folder. Only user deliverables belong in outputs/. Do not copy the private Vercel staging .env.local into the repository or releases. Use one heavy capture/render browser at a time when memory is low. Preserve all other workers' edits.

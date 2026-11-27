@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-27",
+  "url": "http://127.0.0.1:4173/",
+  "buildAssets": [
+    "index-IbuzJyDS.js",
+    "index-Qu8qLh7H.css"
+  ],
+  "tool": "ECC Chrome DevTools performance_start_trace",
+  "method": "Warm local production-preview reload, automatic five-second trace",
+  "cpuThrottle": 1,
+  "networkThrottle": "none",
+  "lcpMilliseconds": 115,
+  "cls": 0,
+  "inp": "UNKNOWN",
+  "realUserMetrics": "UNKNOWN",
+  "note": "Single local lab observation; not a deployment or mobile-network benchmark. Supersedes the older138ms/0.06 first-revision smoke measurement for this runtime. This trace preceded the final CSS-only handoff-text correction.",
+  "consoleWarnings": 0,
+  "consoleErrors": 0,
+  "networkRequests": 11,
+  "networkStatusCodes": [
+    304
+  ],
+  "networkOrigins": [
+    "http://127.0.0.1:4173"
+  ]
+}
