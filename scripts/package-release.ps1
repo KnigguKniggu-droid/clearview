@@ -18,7 +18,7 @@ try {
   $clearviewArchive = [IO.Compression.ZipFile]::OpenRead($clearviewExtensionZip)
   try {
     $clearviewEntries = @($clearviewArchive.Entries | ForEach-Object { $_.FullName.Replace('\','/') })
-    foreach ($clearviewRequired in @('manifest.json','index.html','background.js','contentScript.js')) {
+    foreach ($clearviewRequired in @('manifest.json','index.html','background.js','contentScript.js','THIRD_PARTY_NOTICES.txt')) {
       if ($clearviewEntries -notcontains $clearviewRequired) { throw "Extension archive lacks $clearviewRequired" }
     }
   } finally { $clearviewArchive.Dispose() }

@@ -15,3 +15,4 @@ for (const [entry, name] of [['background', 'ClearViewBackground'], ['contentScr
   });
 }
 copyFileSync(path('./manifest.json'), path('./dist/manifest.json'));
+copyFileSync(path('../../THIRD_PARTY_NOTICES.txt'), path('./dist/THIRD_PARTY_NOTICES.txt'));

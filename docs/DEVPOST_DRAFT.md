@@ -56,5 +56,5 @@ TypeScript, React, Vite, Tailwind CSS, Lucide, npm workspaces, Vitest, JSDOM, Ch
 | Extension release URL | Not published |
 | Team member names | Owner must provide |
 | Participant eligibility | Owner must confirm against current event rules |
-| Test and browser evidence | Insert measured results from final verification |
-| AI and third-party attribution | Confirm against actual work and event disclosure requirements |
+| Test and browser evidence | 33 analyzer tests, 6 extension integration tests, and 10 Chromium browser tests pass; actual extension tested on W3C educational page; see docs/VERIFICATION.md |
+| AI and third-party attribution | Codex-assisted implementation and review with ECC workflows; React, Lucide, and Tailwind notices are included; video uses local Microsoft Zira narration |

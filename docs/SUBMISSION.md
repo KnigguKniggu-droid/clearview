@@ -16,14 +16,14 @@ The rules page says winners will be announced on November 21, 2026. That date pr
 
 | Gate | Required evidence | Current state |
 | --- | --- | --- |
-| Analyzer | Root `npm test` output and exit code | Pending final verification |
-| Types | Root `npm run typecheck` output and exit code | Pending final verification |
-| Production build | Root `npm run build` output and exit code | Pending final verification |
-| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | Pending final verification |
-| Extension | Load unpacked; scan; locate; repair; revert; tab navigation; restricted-page error | Pending final verification |
-| Privacy | Inspect source, bundles, and network behavior | Pending final verification |
+| Analyzer | Root `npm test` output and exit code | 33 tests pass; coverage thresholds pass |
+| Types | Root `npm run typecheck` output and exit code | All workspaces pass |
+| Production build | Root `npm run build` output and exit code | All workspaces pass |
+| Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 10 Chromium tests pass |
+| Extension | Load unpacked; scan; locate; repair; revert; tab navigation; restricted-page error | Six message tests and real Chromium runtime flow pass |
+| Privacy | Inspect source, bundles, and network behavior | Source review and browser no-submission/no-external-request assertions pass |
 | Video | Real product proof; runtime; readable captions; decode and audio checks | Pending production and verification |
-| ZIPs | Archive inventory; expected entry points; no secrets or dependencies folder | Pending release packaging |
+| ZIPs | Archive inventory; expected entry points; no secrets or dependencies folder | Extension and source ZIPs pass CRC and inventory checks; source is regenerated after final documentation updates |
 | Public source | Approved repository contents and destination | Not published |
 | Public demo | Approved Vercel project and deployed smoke test | Not published |
 | Submission | Owner eligibility, team details, reviewed writeup, valid links | Not submitted |

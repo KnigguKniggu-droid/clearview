@@ -6,5 +6,6 @@ coverage/
 work/
 playwright-report/
 test-results/
+SESSION_HANDOFF.md
 .env*
 !.env.example

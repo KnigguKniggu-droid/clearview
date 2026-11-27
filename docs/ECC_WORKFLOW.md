@@ -13,6 +13,8 @@ ECC provides reusable development guidance and tools. ClearView uses the install
 | `frontend-patterns` | Separate rendering, state coordination, reusable components, and side effects |
 | `browser-qa` | Verify real interactions, console and network behavior, responsive views, and accessibility checks |
 
+The ECC Chrome DevTools tools also inspected the production preview. They returned a local performance trace, console results, and network results. The trace file export could not write to this workspace through the plugin's configured filesystem roots, so the report preserves returned metrics and marks that export limitation.
+
 The project applies relevant ECC guidance across implementation and verification. It does not claim to run every unrelated ECC skill or to install Claude-specific hooks in Codex. Installed guidance is a workflow aid, not evidence that tests passed.
 
 ## Responsibilities

@@ -1,0 +1,14 @@
+{
+  "clientDate": "2026-11-26",
+  "tool": "ECC Chrome DevTools performance trace",
+  "sourceRevision": "989aaca31f707ac787c28976669f323e89ee8d3e",
+  "target": "Production preview on loopback",
+  "conditions": "One warm local reload; CPU 1x; no network throttling; four HTTP 304 responses; no field data",
+  "lcpMilliseconds": 138,
+  "cls": 0.06,
+  "inp": "UNKNOWN",
+  "consoleErrorsOrWarnings": 0,
+  "httpErrors": 0,
+  "externalRequests": 0,
+  "limitations": "Single local lab observation. This is not a deployed, mobile-network, or real-user performance result. Raw trace export was unavailable through the plugin's configured filesystem roots; values come from its returned summary."
+}
