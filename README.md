@@ -6,7 +6,9 @@ The project contains a browser sandbox and a Chrome side-panel extension. Both u
 
 **Live sandbox:** [clearview-brown.vercel.app](https://clearview-brown.vercel.app).
 
-**Source:** [KnigguKniggu-droid/clearview](https://github.com/KnigguKniggu-droid/clearview). Release evidence and remaining checks are recorded in `docs/VERIFICATION.md` and `CURRENT_STATE.md`. The demo video is being produced separately; no Devpost submission is implied.
+**Source:** [KnigguKniggu-droid/clearview](https://github.com/KnigguKniggu-droid/clearview). Release evidence is recorded in `docs/VERIFICATION.md` and `CURRENT_STATE.md`.
+
+The local release includes a narrated 2:37 demo, captions, a review copy under 10 MB, and a separate 10-second before/after comparison. See [video verification](docs/VIDEO_VERIFICATION.md) for measured checks, two independent critique rounds, and explicit review limits. The video has not been uploaded to a hosting service. No Devpost submission has been made.
 
 ## Run locally
 

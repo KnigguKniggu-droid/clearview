@@ -52,7 +52,7 @@ TypeScript, React, Vite, Tailwind CSS, Lucide, npm workspaces, Vitest, JSDOM, Ch
 | --- | --- |
 | Live demo URL | https://clearview-brown.vercel.app |
 | Source repository URL | https://github.com/KnigguKniggu-droid/clearview |
-| Demo video URL | Not published |
+| Demo video URL | Not published; local 157.3-second film, captions, and review copy are delivered. See VIDEO_VERIFICATION.md. |
 | Extension release URL | Not published |
 | Team member names | Owner must provide |
 | Participant eligibility | Owner must confirm against current event rules |

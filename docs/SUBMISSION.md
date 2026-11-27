@@ -22,7 +22,7 @@ The rules page says winners will be announced on November 21, 2026. That date pr
 | Sandbox | Scenario arithmetic, Safe Mode, revert, keyboard control, responsive views | 13 Chromium tests pass locally and on the live Vercel site |
 | Extension | Load unpacked; scan; locate; repair; revert; tab navigation; restricted-page error | Six message tests and real Chromium runtime flow pass |
 | Privacy | Inspect source, bundles, and network behavior | Source review and browser no-submission/no-external-request assertions pass |
-| Video | Real product proof; runtime; readable captions; decode and audio checks | Pending production and verification |
+| Video | Real product proof; runtime; readable captions; decode and audio checks | Local 157.3-second film delivered; decode, codec, captions, and objective audio pass; two independent critique rounds complete; explicit exceptions and manual limits in VIDEO_VERIFICATION.md |
 | ZIPs | Archive inventory; expected entry points; no secrets or dependencies folder | Extension and source ZIPs pass CRC and inventory checks; source is regenerated after final documentation updates |
 | Public source | Approved repository contents and destination | Published at https://github.com/KnigguKniggu-droid/clearview |
 | Public demo | Approved Vercel project and deployed smoke test | https://clearview-brown.vercel.app; final runtime deployed;17 static files match;13 browser tests pass |

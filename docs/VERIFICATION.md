@@ -21,7 +21,7 @@ The browser tests verify medical, telecom, and utility totals; selection changes
 
 The final browser interaction check also observed no external HTTP requests and no non-GET submission requests. The demo enrollment control displayed its local result without submitting data. Source review found no runtime fetch, XHR, persistent storage, or remote-analysis client in the app, extension, or analyzer source.
 
-Final integrated `npm run verify` exited 0. An earlier run failed on a lint expression in the new runtime test harness; that expression was fixed and the full command was rerun. Earlier footage from `989aaca31f707ac787c28976669f323e89ee8d3e` is superseded by the second redesign. Final capture awaits the new verified runtime pin.
+The integrated `npm run verify` exited 0 at this stage. An earlier run failed on a lint expression in the new runtime test harness; that expression was fixed and the full command was rerun. Earlier footage from `989aaca31f707ac787c28976669f323e89ee8d3e` is superseded. The final runtime and film verification appear in the later sections.
 
 ## Verified sample arithmetic
 
@@ -56,7 +56,7 @@ The public [runtime receipt](evidence/extension-browser-receipt.json) records th
 - Screenshots from the original and revised interfaces are retained. They document the redesign; they are not a pre-existing automated visual regression suite.
 - One ECC Chrome DevTools trace of a warm production-preview reload measured LCP138ms and CLS0.06 with no throttling. Four requests returned304; no console warnings/errors or HTTP errors appeared. INP and real-user metrics remain UNKNOWN. This local lab observation does not predict deployment or mobile-network performance. See evidence/performance-smoke.json.
 - Screen-reader behavior and a complete WCAG audit remain manual review tasks. The sample portals intentionally contain accessibility defects.
-- Demo video render, audio measurements, and final frame review are pending.
+- Demo video render, audio measurements, and final frame review were pending at this stage. See the final film section for the delivery status.
 - GitHub and Vercel publication are complete. The final runtime passes the deployed browser suite.
 
 The project is a working prototype with documented scope limits, not accessibility certification or a financial audit.
@@ -78,18 +78,24 @@ The aligned navy/cobalt extension passed the real Chromium runtime script again,
 
 Runtime `6f9617617c3e6e7b78dabdf4b324ed4686008866` is public on the GitHub main branch and deployed at https://clearview-brown.vercel.app. The final source push succeeded after the owner-approved workflow scope was added. Public HTTP checks confirmed all17static files match the local build byte for byte. The standalone sample returned200. The nosniff and no-referrer headers are present. The complete12-test Chromium suite passed against the deployed URL. See evidence/deployment-check.json.
 
-GitHub Actions run45950204285 passed on this revision. A Node20 action-deprecation warning appeared; it did not fail the run. A subsequent frontend refinement is in progress. Its verification is recorded separately when completed.
+GitHub Actions run45950204285 passed on this revision. A Node20 action-deprecation warning appeared; it did not fail the run. The subsequent frontend refinement is recorded below.
 
-## Final refinement — runtime86676fa, November27
+## Final refinement — runtime 86676fa, November 27
 
-`npm run verify` exited0 with33analyzer tests and6extension integration tests, lint, all workspace type checks, and production builds. Final assets are `index-CF173xBh.js` and `index-CSZSckdf.css`; the extension uses `index-j7SDI4yC.js` and `index-CxX1of51.css`.
+`npm run verify` exited 0 with 33 analyzer tests and 6 extension integration tests, lint, all workspace type checks, and production builds. Final assets are `index-CF173xBh.js` and `index-CSZSckdf.css`; the extension uses `index-j7SDI4yC.js` and `index-CxX1of51.css`.
 
-The13-test browser suite passed on the local production preview in11.9seconds and on the deployed site in18.7seconds. The added regression verifies separate exact receipt totals under a diagnostic doubled-text setting. The suite also checks both44px target dimensions and the visible filtered finding count. Actual browser zoom and screen-reader testing remain UNKNOWN.
+The 13-test browser suite passed on the local production preview in 11.9 seconds and on the deployed site in 18.7 seconds. The added regression verifies separate exact receipt totals under a diagnostic doubled-text setting. The suite also checks both 44 px target dimensions and the visible filtered finding count. Actual browser zoom and screen-reader testing remain UNKNOWN.
 
 The real extension test passed again after the build. Temporary access is gated by the toolbar action. Scan, source location, supported repairs, tab/navigation invalidation, and restricted-page errors pass. W3C captured properties restore exactly, with no rollback differences.
 
-The [brand and motion receipt](evidence/brand/motion-panel-receipt.json) records16passed checks, including pointer reversal, resize, native entry, live reduced-motion switching, failed-media fallback, and initial extension screens at320/420px. The160px Spotkit illustration was inspected at its actual rendered size. The SVG checker passes.
+The [brand and motion receipt](evidence/brand/motion-panel-receipt.json) records 16 passed checks, including pointer reversal, resize, native entry, live reduced-motion switching, failed-media fallback, and initial extension screens at 320/420 px. The 160 px Spotkit illustration was inspected at its actual rendered size. The SVG checker passes.
 
-The [functional refinement review](evidence/refinement/refinement-review.md) records21scenario/viewport states, source-to-implementation mappings, and limitations. It preserves the generic layout helper's19errors/1warning and their triage. It also preserves a reduced-motion helper discrepancy; separate pointer/hit-state samples show the affected controls change fill/color. No blanket helper PASS is claimed.
+The [functional refinement review](evidence/refinement/refinement-review.md) records 21 scenario/viewport states, source-to-implementation mappings, and limitations. It preserves the generic layout helper's 19 errors and 1 warning, with their triage. It also preserves a reduced-motion helper discrepancy. Separate pointer/hit-state samples show the affected controls change fill/color. No blanket helper PASS is claimed.
 
-All17public static files match the final local build byte for byte. The standalone route returns200, and security headers remain present. Runtime86676fa is on the public GitHub main branch. GitHub CI run45951775578 passed. The video uses this fixed runtime; subsequent documentation commits do not change captured code.
+All 17 public static files match the final local build byte for byte. The standalone route returns 200, and security headers remain present. Runtime `86676fa` is on the public GitHub main branch. GitHub CI run 45951775578 passed. The video uses this fixed runtime. Subsequent documentation commits do not change captured code.
+
+## Final film
+
+The 157.3-second master and review copy pass full decode. Codec, transcript, caption, scene-lint, and objective audio checks pass. The review copy is 9,661,267 bytes. Two independent reviewers completed two critique rounds and found no concrete blocker in the reviewed final frames.
+
+The raw automated report remains FAIL because of stationary source frames and reading holds. The reviewed report passes with warnings after exact, hash-bound allowances. The full-bleed framing target is not met; the separate caption lane is a documented legibility exception. Human listening and uninterrupted full-film playback remain UNKNOWN. See [VIDEO_VERIFICATION.md](VIDEO_VERIFICATION.md) for the exact scope, metrics, hashes, and exceptions.

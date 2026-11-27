@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-27T07:14:16.604037+00:00",
+  "runtimeRevision": "86676fa7176cdeec8f03d8505e1c1f2f929f4b6a",
+  "scope": "Final file existence, hashes, and container/stream properties. See Video QA for content review and audio measurements.",
+  "artifacts": [
+    {
+      "file": "ClearView-Demo.mp4",
+      "bytes": 72569053,
+      "sha256": "bfb0c835c6383c20d2d4f802e7d18efe640810701442e06e1df69a046840902c",
+      "durationSeconds": 157.3,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "status": "PASS"
+    },
+    {
+      "file": "ClearView-Demo-Review.mp4",
+      "bytes": 9661267,
+      "sha256": "6fa357a639fe40585b87cf601a534309f472ff58c0d26d60f6f4971d0f910195",
+      "durationSeconds": 157.3,
+      "width": 1280,
+      "height": 720,
+      "fps": "30/1",
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "status": "PASS"
+    },
+    {
+      "file": "ClearView-UI-Redesign.mp4",
+      "bytes": 3830523,
+      "sha256": "474994d38f9cf19756cda3085b7652dafb21dd946559a7db9e3d7917ad46a1fc",
+      "durationSeconds": 10.0,
+      "width": 1920,
+      "height": 1080,
+      "fps": "30/1",
+      "videoCodec": "h264",
+      "audioCodec": null,
+      "status": "PASS"
+    },
+    {
+      "file": "ClearView-Demo.srt",
+      "bytes": 3980,
+      "sha256": "a5ce8f6bfb4ea492ee7d71a92727e95b7107310bd17271ae1e929e0f52d2c3c1",
+      "status": "PASS"
+    },
+    {
+      "file": "ClearView-Video-QA.md",
+      "bytes": 7695,
+      "sha256": "3b1aeb4ba5e201b0e3a0c50f21c16f83feb41ca3dc69f84a903af4d8d573d8bb",
+      "status": "PASS"
+    },
+    {
+      "file": "ClearView-Poster.png",
+      "bytes": 333013,
+      "sha256": "e3606381f61f88a4a033adb0663dc08cb808f9ca7315d1e3bd7f44e792d0dec5",
+      "status": "PASS"
+    }
+  ]
+}
