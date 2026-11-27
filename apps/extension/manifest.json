@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "ClearView — Page Guard",
+  "version": "1.0.0",
+  "description": "Inspect visible fees, selected add-ons, and accessibility issues. Apply reversible local page repairs.",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "activeTab", "scripting"],
+  "action": {"default_title": "Open ClearView for this page"},
+  "background": {"service_worker": "background.js"},
+  "side_panel": {"default_path": "index.html"},
+  "content_security_policy": {"extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"}
+}

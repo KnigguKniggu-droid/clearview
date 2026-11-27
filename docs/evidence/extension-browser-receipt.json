@@ -1,0 +1,83 @@
+{
+  "checkedAt": "2026-11-27T05:33:59.969Z",
+  "status": "PASS",
+  "browser": "Chrome/159.0.8154.6",
+  "method": "Real unpacked Chromium extension; CDP Extensions.triggerAction invokes the toolbar action. No host permission changes.",
+  "checks": [
+    {
+      "name": "No page access before toolbar action",
+      "denied": true,
+      "error": "Cannot access contents of the page. Extension manifest must request permission to access the respective host."
+    },
+    {
+      "name": "Local medical report through real sidepanel",
+      "totals": [
+        "$334.00",
+        "$29.99"
+      ],
+      "findings": "10"
+    },
+    {
+      "name": "Local safe repair and live receipt",
+      "totals": [
+        "$334.00",
+        "$0.00"
+      ],
+      "findings": "0",
+      "checkboxChecked": false
+    },
+    {
+      "name": "Local revert restores checkbox",
+      "passed": true
+    },
+    {
+      "name": "Navigation clears the old report",
+      "passed": true
+    },
+    {
+      "name": "Live W3C educational page audit",
+      "url": "https://www.w3.org/WAI/demos/bad/before/home.html",
+      "findings": 47,
+      "scores": [
+        100,
+        0
+      ]
+    },
+    {
+      "name": "Public source locate highlights a real page element",
+      "highlighted": 1,
+      "passed": true
+    },
+    {
+      "name": "Live W3C local repairs",
+      "findings": 41,
+      "scores": [
+        100,
+        0
+      ],
+      "badges": 6
+    },
+    {
+      "name": "Live W3C exact captured attributes restored",
+      "exactRollback": true,
+      "remainingBadges": 0
+    },
+    {
+      "name": "Cross-tab change clears report and requires its own toolbar grant",
+      "passed": true,
+      "message": "Open a regular http or https webpage and click the ClearView toolbar icon on that tab. Browser pages cannot be audited."
+    },
+    {
+      "name": "Restricted chrome:// page reports unsupported access",
+      "passed": true,
+      "message": "Open a regular http or https webpage and click the ClearView toolbar icon on that tab. Browser pages cannot be audited."
+    }
+  ],
+  "screenshots": [
+    "docs/evidence/extension-medical-panel-before.png",
+    "docs/evidence/extension-medical-panel-after.png",
+    "docs/evidence/extension-w3c-panel-before.png",
+    "docs/evidence/extension-w3c-panel-after.png",
+    "docs/evidence/extension-restricted-page-message.png"
+  ]
+}

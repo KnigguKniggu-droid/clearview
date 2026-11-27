@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.vercel/
+coverage/
+*.log
+work/
+playwright-report/
+test-results/
+.env*
+!.env.example
