@@ -56,5 +56,5 @@ TypeScript, React, Vite, Tailwind CSS, Lucide, npm workspaces, Vitest, JSDOM, Ch
 | Extension release URL | Not published |
 | Team member names | Owner must provide |
 | Participant eligibility | Owner must confirm against current event rules |
-| Test and browser evidence | Published runtime6f96176 passed33analyzer tests,6extension integration tests, and12Chromium browser tests; actual extension tested on W3C educational page; see docs/VERIFICATION.md |
+| Test and browser evidence | Published runtime86676fa passed33analyzer tests,6extension integration tests, and13Chromium browser tests; actual extension tested on W3C educational page; see docs/VERIFICATION.md |
 | AI and third-party attribution | Codex-assisted implementation and review with ECC and documented design skills. Intro/scenario artwork generated with Limora. Third-party notices are included. Video uses local Microsoft Zira narration. See FRONTEND_SKILLS.md, DESIGN_REFERENCES.md, and ARTWORK_PROVENANCE.md. |

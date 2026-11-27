@@ -1,0 +1,62 @@
+[
+  {
+    "selector": "[data-testid=\"scenario-medical\"]",
+    "hover": {
+      "fill": "rgb(249, 251, 254)",
+      "color": "rgb(36, 93, 206)",
+      "active": false,
+      "hit": true
+    },
+    "down": {
+      "fill": "rgb(217, 232, 248)",
+      "color": "rgb(23, 62, 146)",
+      "active": true,
+      "hit": true
+    }
+  },
+  {
+    "selector": "[data-testid=\"scenario-subscription\"]",
+    "hover": {
+      "fill": "rgb(249, 251, 254)",
+      "color": "rgb(19, 40, 62)",
+      "active": false,
+      "hit": true
+    },
+    "down": {
+      "fill": "rgb(217, 232, 248)",
+      "color": "rgb(23, 62, 146)",
+      "active": true,
+      "hit": true
+    }
+  },
+  {
+    "selector": "[data-testid=\"scenario-utility\"]",
+    "hover": {
+      "fill": "rgb(249, 251, 254)",
+      "color": "rgb(19, 40, 62)",
+      "active": false,
+      "hit": true
+    },
+    "down": {
+      "fill": "rgb(217, 232, 248)",
+      "color": "rgb(23, 62, 146)",
+      "active": true,
+      "hit": true
+    }
+  },
+  {
+    "selector": ".reset-button",
+    "hover": {
+      "fill": "rgb(231, 239, 254)",
+      "color": "rgb(36, 93, 206)",
+      "active": false,
+      "hit": true
+    },
+    "down": {
+      "fill": "rgb(217, 232, 248)",
+      "color": "rgb(23, 62, 146)",
+      "active": true,
+      "hit": true
+    }
+  }
+]

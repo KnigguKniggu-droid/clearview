@@ -1,0 +1,22 @@
+FAIL  61 nodes, 10 rows, 6 columns, 0 keyline sets, 5 controls; 19 errors, 1 warnings
+ERROR   misaligned-edge      Stacked elements almost line up on their start edge but miss by up to 7.6px: /mo (small#14)=289, 100 (strong#55)=296.6.
+ERROR   misaligned-row       Items in a row [Accessibility+84 (div#53), div#54] do not share a line: closest is the bottom line, off by 10px.
+ERROR   off-center           Content of button#22 sits 5.8px above center.
+ERROR   off-center           Content of button#22 sits 2.2px right of center.
+ERROR   off-center           Content of button#27 sits 5.3px above center.
+ERROR   off-center           Content of button#27 sits 2.2px right of center.
+ERROR   off-center           Content of 1 other price disclosure · review separa (summary#33) sits 13.6px left of center.
+ERROR   off-center           Content of $29.99/mo (button#35) sits 1.5px above center.
+ERROR   off-center           Content of button#40 sits 1.8px left of center.
+ERROR   overflow             section#1 sticks out of viewport: bottom by 115.9px.
+ERROR   overflow             $0.00 (span#13) sticks out of strong#12: top by 4px, bottom by 2.2px.
+ERROR   overflow             div#34 sticks out of details#32: bottom by 44px.
+ERROR   overlap              button#35/label and svg#36 overlap by 14x7px.
+ERROR   tight-edge           section#2 is crammed against the edge of section#1: top 0px (needs 16), right 0px (needs 16), left 0px (needs 16).
+ERROR   tight-edge           svg#26 is crammed against the edge of button#22: right 1px (needs 4).
+ERROR   tight-edge           svg#31 is crammed against the edge of button#27: right 1px (needs 4).
+ERROR   tight-edge           div#39 is crammed against the edge of section#1: right 0px (needs 16), left 0px (needs 16).
+ERROR   tight-edge           Selected automated checks · Not a certif (div#59) is crammed against the edge of section#1: right 0px (needs 16), bottom 0px (needs 16), left 0px (needs 16).
+ERROR   uneven-gap           Unequal gaps between items of the same kind in section#2: div#3→div#6 0, div#6→div#15 -0, div#15→div#19 24, div#19→div#21 0, div#21→details#32 -0 px.
+WARNING inset-below-gap      div#7: content is 0px from the frame but 8px from its siblings; padding should be at least the inner gap.
+Scope: Checks only the dumped nodes and their boxes; no color, type, motion, or task review. Ambiguous groupings are skipped, so PASS is not proof that the screen looks right. Text and icon centering is exact only when 'ink' (visible bounds) is provided.

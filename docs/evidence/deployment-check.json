@@ -1,27 +1,9 @@
 {
-  "checkedAt": "2026-11-27T06:11:02.573510+00:00",
+  "checkedAt": "2026-11-27T06:25:37.899036+00:00",
   "url": "https://clearview-brown.vercel.app",
-  "sourceRevision": "6f9617617c3e6e7b78dabdf4b324ed4686008866",
+  "sourceRevision": "86676fa7176cdeec8f03d8505e1c1f2f929f4b6a",
   "status": "PASS",
   "exactStaticAssetMatches": [
-    {
-      "path": "favicon.svg",
-      "bytes": 293,
-      "sha256": "4aa7214392b1b884c83ee37e681e15751ac845b80d8eabd065dfca689988eeb3",
-      "status": 200
-    },
-    {
-      "path": "index.html",
-      "bytes": 608,
-      "sha256": "4acaad5e7a1f64b88208ee7bbf7cce3d40befb482ab6d7a5de6aafb9156e8777",
-      "status": 200
-    },
-    {
-      "path": "THIRD_PARTY_NOTICES.txt",
-      "bytes": 9844,
-      "sha256": "35dda82dbaed5b40e7a8b1e7faf9aaa3f40550673df4e9644ced64442f50e1b2",
-      "status": 200
-    },
     {
       "path": "art/electric-meter.webp",
       "bytes": 63052,
@@ -77,15 +59,21 @@
       "status": 200
     },
     {
-      "path": "assets/index-D0OyYlt7.css",
-      "bytes": 42690,
-      "sha256": "7e6397df7b77b9bad850545b993a111bff30c113fe26855432b4778d8491a5f7",
+      "path": "assets/index-CF173xBh.js",
+      "bytes": 280663,
+      "sha256": "aed00f32c71faa1b30ba338a5e0469596d11fd34e46d466f7d4aad3ec4ab8111",
       "status": 200
     },
     {
-      "path": "assets/index-DEoTv2Bz.js",
-      "bytes": 279416,
-      "sha256": "5a1b085b7b6e2dc1f968001d33cb33562634911d7d44695556b4f446f8c24c3a",
+      "path": "assets/index-CSZSckdf.css",
+      "bytes": 42775,
+      "sha256": "8fd3ea78e4e123dd08375df6ae0db27dfffb98fade0be82d9d163dbf27d45bdb",
+      "status": 200
+    },
+    {
+      "path": "favicon.svg",
+      "bytes": 348,
+      "sha256": "dbb2919b270109d1e66057da62a7c678e239e54b94d953ff2ed3c85910e05a71",
       "status": 200
     },
     {
@@ -105,9 +93,21 @@
       "bytes": 53824,
       "sha256": "af9e02c20829b5559efe9ffe337ec3711e3034bab476759e2fa85528bdf21147",
       "status": 200
+    },
+    {
+      "path": "index.html",
+      "bytes": 608,
+      "sha256": "5635c9acfc3ec751c3574c9a884be274fe69d254308821ee00994eeec5e1e772",
+      "status": 200
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.txt",
+      "bytes": 12449,
+      "sha256": "91a704b735d81729b0a72c05712af2b539767b63a08780ce515510c0026e035c",
+      "status": 200
     }
   ],
-  "standaloneRouteStatus": 200,
+  "standaloneStatus": 200,
   "headers": {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer"

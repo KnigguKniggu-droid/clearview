@@ -79,3 +79,17 @@ The aligned navy/cobalt extension passed the real Chromium runtime script again,
 Runtime `6f9617617c3e6e7b78dabdf4b324ed4686008866` is public on the GitHub main branch and deployed at https://clearview-brown.vercel.app. The final source push succeeded after the owner-approved workflow scope was added. Public HTTP checks confirmed all17static files match the local build byte for byte. The standalone sample returned200. The nosniff and no-referrer headers are present. The complete12-test Chromium suite passed against the deployed URL. See evidence/deployment-check.json.
 
 GitHub Actions run45950204285 passed on this revision. A Node20 action-deprecation warning appeared; it did not fail the run. A subsequent frontend refinement is in progress. Its verification is recorded separately when completed.
+
+## Final refinement — runtime86676fa, November27
+
+`npm run verify` exited0 with33analyzer tests and6extension integration tests, lint, all workspace type checks, and production builds. Final assets are `index-CF173xBh.js` and `index-CSZSckdf.css`; the extension uses `index-j7SDI4yC.js` and `index-CxX1of51.css`.
+
+The13-test browser suite passed on the local production preview in11.9seconds and on the deployed site in18.7seconds. The added regression verifies separate exact receipt totals under a diagnostic doubled-text setting. The suite also checks both44px target dimensions and the visible filtered finding count. Actual browser zoom and screen-reader testing remain UNKNOWN.
+
+The real extension test passed again after the build. Temporary access is gated by the toolbar action. Scan, source location, supported repairs, tab/navigation invalidation, and restricted-page errors pass. W3C captured properties restore exactly, with no rollback differences.
+
+The [brand and motion receipt](evidence/brand/motion-panel-receipt.json) records16passed checks, including pointer reversal, resize, native entry, live reduced-motion switching, failed-media fallback, and initial extension screens at320/420px. The160px Spotkit illustration was inspected at its actual rendered size. The SVG checker passes.
+
+The [functional refinement review](evidence/refinement/refinement-review.md) records21scenario/viewport states, source-to-implementation mappings, and limitations. It preserves the generic layout helper's19errors/1warning and their triage. It also preserves a reduced-motion helper discrepancy; separate pointer/hit-state samples show the affected controls change fill/color. No blanket helper PASS is claimed.
+
+All17public static files match the final local build byte for byte. The standalone route returns200, and security headers remain present. Runtime86676fa is on the public GitHub main branch. GitHub CI run45951775578 passed. The video uses this fixed runtime; subsequent documentation commits do not change captured code.

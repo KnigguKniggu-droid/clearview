@@ -1,0 +1,94 @@
+{
+  "url": "http://127.0.0.1:4174/#live-audit",
+  "viewport": "390x844",
+  "reducedMotion": true,
+  "elements": 4,
+  "errors": [
+    "button \"Telecom & StreamAdd-ons & renewal rates\": no press feedback within 60 ms",
+    "button \"LoneStar UtilityUsage rates & enrollment\": no press feedback within 60 ms",
+    "button \"Reset portal state\": no press feedback within 60 ms"
+  ],
+  "warnings": [
+    "button \"Medical BillingFacility fees & membershi\": no transitions (state changes cut)",
+    "button \"Telecom & StreamAdd-ons & renewal rates\": no transitions (state changes cut)",
+    "button \"LoneStar UtilityUsage rates & enrollment\": no transitions (state changes cut)",
+    "button \"Reset portal state\": no transitions (state changes cut)"
+  ],
+  "results": [
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Medical BillingFacility fees & membershi",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style"
+      ],
+      "release": [],
+      "warnings": [
+        "no transitions (state changes cut)"
+      ]
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Telecom & StreamAdd-ons & renewal rates",
+      "hover": [
+        "background-color"
+      ],
+      "press": [],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": [
+        "no transitions (state changes cut)"
+      ]
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "LoneStar UtilityUsage rates & enrollment",
+      "hover": [
+        "background-color"
+      ],
+      "press": [],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": [
+        "no transitions (state changes cut)"
+      ]
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Reset portal state",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": [
+        "no transitions (state changes cut)"
+      ]
+    }
+  ]
+}

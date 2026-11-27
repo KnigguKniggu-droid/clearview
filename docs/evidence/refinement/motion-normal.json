@@ -1,0 +1,493 @@
+{
+  "url": "http://127.0.0.1:4174/",
+  "viewport": "1440x1000",
+  "reducedMotion": false,
+  "elements": 23,
+  "errors": [],
+  "warnings": [
+    "button \"All\": no hover response"
+  ],
+  "results": [
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Medical BillingFacility fees & membershi",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Telecom & StreamAdd-ons & renewal rates",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "LoneStar UtilityUsage rates & enrollment",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Reset portal state",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "01Outpatient Visit Copay $185.00",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "02Administrative Facility FeeHard-to-see",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "03Priority Telehealth Membership Enroll ",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Activate Safe & Accessible Mode",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "transform",
+        "background-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Rescan portal",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "All",
+      "hover": [],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Dark Patterns",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Hidden Fees",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Accessibility",
+      "hover": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-color"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Financial terms are hard to see",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Optional commitment is already s",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Form field has no label",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Form field has no label",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Clickable control lacks keyboard",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Text is difficult to read",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Text is difficult to read",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Text is difficult to read",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Text is difficult to read",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    },
+    {
+      "tag": "button",
+      "kind": "control",
+      "label": "Locate: Text is difficult to read",
+      "hover": [
+        "background-color"
+      ],
+      "press": [
+        "background-color",
+        "color",
+        "outline-color",
+        "text-decoration-color"
+      ],
+      "focus": [
+        "outline-style",
+        "outline-offset"
+      ],
+      "release": [],
+      "warnings": []
+    }
+  ]
+}
